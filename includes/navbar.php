@@ -2,7 +2,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
     <div class="container">
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" href="../index.php">
       	<i class="fas fa-taxi"></i>
         <strong class = "mo">Mo</strong>
         <strong class = "taxi">Taxi</strong>
@@ -14,8 +14,11 @@
         <ul class="navbar-nav mr-auto">
           <li 
           <?php 
-          if ($activemenu=="home")  
-          echo "class=\"nav-item active\"";
+	      	if ($activemenu=="home")  
+	          echo "class=\"nav-item active\"";
+	      	else 
+	      		echo "class = \"nav-item\"";
+               
                ?>>
             <a class="nav-link" href="../index.php">Home
               <span class="sr-only">(current)</span>
@@ -23,17 +26,21 @@
           </li>
           <li 
           <?php 
-          if ($activemenu=="aboutus")  
-          echo "class=\"nav-item active\"";
+         	if ($activemenu=="aboutus")  
+				echo "class=\"nav-item active\"";
+			else 
+				echo "class = \"nav-item\"";
                ?>>
             <a class="nav-link" href="#">About us</a>
           </li>
           <li 
           <?php 
-          if ($activemenu=="signup")  
-          echo "class=\"nav-item active\"";
-               ?>>
-            <a class="nav-link" href="#">Sign up</a>
+         	if ($activemenu=="signup")  
+         		echo "class=\"nav-item active\"";
+         	else 
+         		echo "class = \"nav-item\"";  
+         		    ?>>
+            <a class="nav-link" href="#" data-toggle=modal data-target = "#centralModalSm">Sign up</a>
           </li>
         </ul>
        

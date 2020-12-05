@@ -1,0 +1,4 @@
+todo: 
+
+- all usernames and password in one table, add a field: acc_type (so that we can use one login form and check user account type)
+- driver details and normal user details are stored separately
