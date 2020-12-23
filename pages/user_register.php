@@ -200,9 +200,9 @@ elseif(!empty($_POST["txt_password"])) {
     <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Sign Up</button>
 
     <!-- facebook register -->
-    <p>or sign up with:</p>
+   <!--  <p>or sign up with:</p>
 
-    <a href="#" class="mx-2" role="button"><i class="fab fa-facebook-f light-blue-text"></i></a>
+    <a href="#" class="mx-2" role="button"><i class="fab fa-facebook-f light-blue-text"></i></a> -->
     <hr>
 
     <!-- Terms of service -->

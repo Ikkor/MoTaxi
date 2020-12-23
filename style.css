@@ -257,7 +257,7 @@ footer {
 
 .reguser {
 
-  background-color: white;
+  background-color: none;
   margin: 0 auto;
   padding-top: 100px;
   width:70%;
@@ -267,3 +267,8 @@ footer {
 .error {
   color: red;
 }
+
+.border-light{
+  background-color: white !important;
+}
+
