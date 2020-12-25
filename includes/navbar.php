@@ -2,7 +2,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
     <div class="container">
-      <a class="navbar-brand" href="../index.php">
+      <a class="navbar-brand" href="index.php">
       	<i class="fas fa-taxi"></i>
         <strong class = "mo">Mo</strong>
         <strong class = "taxi">Taxi</strong>
@@ -20,9 +20,18 @@
 	      		echo "class = \"nav-item\"";
                
                ?>>
-            <a class="nav-link" href="../index.php">Home
+            <a class="nav-link" href="index.php">Home
               <span class="sr-only">(current)</span>
             </a>
+          </li>
+          <li 
+          <?php 
+          if ($activemenu=="bookride")  
+        echo "class=\"nav-item active\"";
+      else 
+        echo "class = \"nav-item\"";
+               ?>>
+            <a class="nav-link" href="bookride.php">Book a ride</a>
           </li>
           <li 
           <?php 

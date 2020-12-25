@@ -13,8 +13,9 @@
 	<!-- Material Design Bootstrap -->
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
 
-    <link rel="stylesheet" type="text/css" href="../style.css">
-
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+  <link rel="stylesheet" type="text/css" href="../css/style.css">
+    
    
 	</head>
 
@@ -222,7 +223,7 @@ elseif(!empty($_POST["txt_password"])) {
 </header>
 
 
-
+<script type ="text/javascript" src="../javascript/rideform.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <!-- Bootstrap tooltips -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
@@ -230,7 +231,7 @@ elseif(!empty($_POST["txt_password"])) {
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
   <!-- MDB core JavaScript -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
-
-  <script type ="text/javascript" src="main.js"></script>
+ 
+  <script type ="text/javascript" src="../javascript/main.js"></script>
 </body>
 </html>

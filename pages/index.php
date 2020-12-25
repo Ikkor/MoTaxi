@@ -13,7 +13,12 @@
 	<!-- Material Design Bootstrap -->
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
 
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.2.2/web-animations.min.js"></script>
+
 
    
 	</head>
@@ -24,10 +29,10 @@
   <!--Navbar-->
  <?php 
  $activemenu = "home";
- include('includes/navbar.php'); ?>
+ include('../includes/navbar.php'); ?>
 
   <!-- Full Page Intro -->
-  <div class="view" style="background-image: url('images/bg.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+  <div class="view" style="background-image: url('../images/bg.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
     <!-- Mask & flexbox options-->
     <div class="mask rgba-gradient d-flex justify-content-center align-items-center">
       <!-- Content -->
@@ -40,9 +45,7 @@
           <div class="col-md-6 white-text text-center text-md-left mt-xl-5 mb-5 wow fadeInLeft" data-wow-delay="0.3s">
             <h1 class="h1-responsive font-weight-bold mt-sm-5">Life has never been easier than a ride with MoTaxi! </h1>
             <hr class="hr-light">
-            <h6 class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem repellendus quasi fuga nesciunt
-            dolorum nulla magnam veniam sapiente, fugiat! Commodi sequi non animi ea dolor molestiae
-            iste.</h6>
+            <h6 class="mb-4">Whether you want to book a taxi or arrange your airport transfers, MoTaxi is just what you need!</h6>
             <a class="btn request">Request Ride</a>
   	        <a class="btn btn-outline-white">Learn more</a>
 
@@ -146,15 +149,15 @@
     <div class="modal-body">
       	<div class = "reg-opt">
       		<div class = "img1">
-	      		<img src = "images/steering.png"/>
+	      		<img src = "../images/steering.png"/>
 	      		<br/>
 		        <button type="button" class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0">Driver</button>
 		    </div>
 
 			<div class ="img2">
-				<img src = "images/user.png"/>
+				<img src = "../images/user.png"/>
 	      		<br/>
-		        <a href = "pages/user_register.php"><button type="button" class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0">User</button></a>
+		        <a href = "../pages/user_register.php"><button type="button" class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0">User</button></a>
 		    </div>
 
 	    </div>
@@ -210,7 +213,7 @@
 	<!-- MDB core JavaScript -->
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
 
-	<script type ="text/javascript" src="main.js"></script>
+	<script type ="text/javascript" src="../javascript/main.js"></script>
 
     </body>
 </html>
