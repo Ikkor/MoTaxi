@@ -253,6 +253,7 @@ if($err != 1){ //if no errors
 <!-- Default form register -->
 <!-- Central Modal Small -->
 </header>
+<?php include("../modules/registerpopup.php"); ?>
 
 
 <script type ="text/javascript" src="../javascript/rideform.js"></script>

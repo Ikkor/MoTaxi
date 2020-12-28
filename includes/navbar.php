@@ -68,3 +68,6 @@
       </div>
     </div>
   </nav>
+
+<!-- For register as a ... popup -->
+  <?php include("../modules/registerpopup.php"); ?>
