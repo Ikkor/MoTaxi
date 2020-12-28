@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!doctype html>
 <html>
     <head>
@@ -33,6 +34,11 @@
 
 
  <?php 
+    if(!isset($_SESSION['username']))
+        {
+         header("Location: index.php?referer=badlogin");
+        }
+
 	$activemenu = 'bookride';
 	include('../includes/navbar.php');
 	?>

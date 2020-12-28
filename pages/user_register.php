@@ -14,7 +14,6 @@
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="../css/style.css">
-  <link rel="stylesheet" type="text/css" href="../css/style.css">
     
    
 	</head>
@@ -88,8 +87,9 @@ if (empty($_POST["txt_email"])) {
     }
   }
 
+  
 
-  }
+  
 
 
   if(!empty($_POST["txt_password"]) && ($_POST["txt_password"] == $_POST["txt_cpassword"])) {
@@ -112,6 +112,38 @@ elseif(!empty($_POST["txt_password"])) {
     $passwordErr = "Please Check You've Entered Or Confirmed Your Password!";
 } else {
      $passwordErr = "Please enter password   ";
+}
+
+
+// IMPORTANT: ONLY INSERTING EMAIL AND PW FOR NOW
+
+if($err != 1){ //if no errors
+
+
+   $hashed_password = password_hash($password,PASSWORD_DEFAULT);
+    require_once "../includes/db_connect.php";
+    $sInsert = "INSERT INTO registered_user  (email, password, username) VALUES( '$email' , '$hashed_password' , '$fname') ";
+    #echo $sQuery;
+    //$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+    $Result = $conn->exec($sInsert) ;
+   
+    if($Result )
+    { 
+      $Msg = "!Success";
+      echo $Msg;
+      header("Location: index.php");
+    }else{
+       $Msg = "ERROR: Your credentials could not be saved!";
+       echo $Msg;
+      
+    }
+    
+
+
+
+
+  }
 }
 ?>
  

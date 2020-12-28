@@ -1,5 +1,3 @@
-
-
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
     <div class="container">
       <a class="navbar-brand" href="index.php">
@@ -44,12 +42,26 @@
           </li>
           <li 
           <?php 
+          // $_SESSION['username'] = 'Tom'; testing purpose
          	if ($activemenu=="signup")  
          		echo "class=\"nav-item active\"";
          	else 
          		echo "class = \"nav-item\"";  
          		    ?>>
-            <a class="nav-link" href="#" data-toggle=modal data-target = "#centralModalSm">Sign up</a>
+
+                <!-- Display sign up if user not logged in! -->
+            <a class="nav-link" href="#" data-toggle=modal data-target = "#centralModalSm"><?php 
+            if(isset($_SESSION['username'])){
+              echo "My Profile";
+            }
+            else{
+                  echo "Sign up";
+                }
+
+              ?>
+            
+            
+            </a>
           </li>
         </ul>
        

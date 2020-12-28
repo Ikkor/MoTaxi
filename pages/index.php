@@ -1,3 +1,9 @@
+<?php
+session_start();
+
+
+?>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -28,6 +34,10 @@
 <header>
   <!--Navbar-->
  <?php 
+ //  $_GET['referer'] = 'login';
+  //$_SESSION['username'] = 'tom';
+  //$username = $_SESSION['username'];
+
  $activemenu = "home";
  include('../includes/navbar.php'); ?>
 
@@ -54,66 +64,28 @@
           <!--Grid column-->
           <!--Grid column-->
 
-          <!-- Material form login -->
-<div class="card">
+          <!-- Display form login OR USER -->
+<?php
+
+  if(isset($_SESSION['username'])){
+   // if($_GET['referer'] == 'login')
+    
+
+      include("../modules/welcomeback.php");
+
+    //end if
+    // if($_GET['referer'] == 'badlogin')
+    // {
+    //  // to do stuffs here
+    // }//end if
+  }
+  else {
+      include("../modules/loginform.php");
+    }
+  ?>
 
 
-  <h5 class="card-header text-center" >
-    <strong>Sign in</strong>
-  </h5>
 
-  <!--Card content-->
-  <div class="card-body px-lg-5 pt-0">
-
-    <!-- Form -->
-    <form class="text-center" style="color: black;" action="#!">
-
-      <!-- Email -->
-      <div class="md-form">
-        <input type="email" id="materialLoginFormEmail" class="form-control">
-        <label for="materialLoginFormEmail">E-mail</label>
-      </div>
-
-      <!-- Password -->
-      <div class="md-form">
-        <input type="password" id="materialLoginFormPassword" class="form-control">
-        <label for="materialLoginFormPassword">Password</label>
-      </div>
-
-      <div class="d-flex justify-content-around">
-        <div>
-          <!-- Remember me -->
-          <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="materialLoginFormRemember">
-            <label class="form-check-label" for="materialLoginFormRemember">Remember me</label>
-          </div>
-        </div>
-        <div>
-          <!-- Forgot password -->
-          <a href="">Forgot password?</a>
-        </div>
-      </div>
-
-      <!-- Sign in button -->
-      <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Sign in</button>
-
-      <!-- Register -->
-      <p>Not a member?
-        <a href="#" data-toggle=modal data-target="#centralModalSm">Register</a>
-      </p>
-
-      <!-- Social login -->
-      <p>or sign in with:</p>
-      <a type="button" class="btn-floating btn-fb btn-sm">
-        <i class="fab fa-facebook-f"></i>
-      </a>
-
-    </form>
-    <!-- Form -->
-
-  </div>
-
-</div>
           <!--Grid column-->
         </div>
         <!--Grid row-->
