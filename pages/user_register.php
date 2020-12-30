@@ -159,9 +159,14 @@ if($err != 1){ //if no errors
 
   <!-- Default form register -->
   <div class = "reguser">
+    <div class="card-header" style = " width: auto;">
+      <strong style = "color:white; ">Register as a </strong>
+      <strong style = "color: black;">User</strong>
+    </div>
 <form class="text-center border border-light p-5" action="<?php echo $_SERVER["PHP_SELF"];?>" method = "post">
+  <p> Please fill in the required details below.. </p><br>
 
-    <p class="h4 mb-4">User Sign Up</p>
+    
 
     <div class="form-row mb-4">
         <div class="col">
@@ -198,10 +203,10 @@ if($err != 1){ //if no errors
 
    
     <!-- Phone number -->
-    <input type="text" id="defaultRegisterPhonePassword" class="form-control" placeholder="Phone number" aria-describedby="defaultRegisterFormPhoneHelpBlock">
+    <!-- <input type="text" id="defaultRegisterPhonePassword" class="form-control" placeholder="Phone number" aria-describedby="defaultRegisterFormPhoneHelpBlock">
     <small id="defaultRegisterFormPhoneHelpBlock" class="form-text text-muted mb-4">
         Optional - for two step authentication
-    </small>
+    </small> -->
 
     <select class = "browser-default custom-select" name="fruit">
     <option value ="none">Select a district</option>

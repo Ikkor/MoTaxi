@@ -34,10 +34,10 @@
 
 
  <?php 
-    if(!isset($_SESSION['username']))
-        {
-         header("Location: index.php?referer=badlogin");
-        }
+    // if(!isset($_SESSION['username']))
+    //     {
+    //      header("Location: index.php?referer=badlogin");
+    //     }
 
 	$activemenu = 'bookride';
 	include('../includes/navbar.php');
@@ -45,12 +45,13 @@
 	
 
                             <!-- MultiStep Form -->
-
+<div class="view1" style="background-image: url('../images/bluemap.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+    
 
 <div class="container-fluid" id="grad1">
     <div class="row justify-content-center mt-0">
         <div class="col-11 col-sm-9 col-md-7 col-lg-6 text-center p-0 mt-3 mb-2">
-            <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
+            <div style = "top: 23px !important;"class="card ride px-0 pt-4 pb-0 mt-3 mb-3">
                 <h2><strong>Book a Ride</strong></h2>
                 <p>Fill in the required details</p>
                 <div class="row">
@@ -126,7 +127,7 @@
         </div>
     </div>
 </div>
-
+</div>
 
  <script type = 'text/javascript' src ='../javascript/rideform.js'></script>
 

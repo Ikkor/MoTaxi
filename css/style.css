@@ -42,6 +42,14 @@ header,
     height: 600px;
 
   }
+
+  .navbar-brand{
+    float:left !important;
+    
+
+  }
+
+
   .nav-item{
     backdrop-filter: blur(10px);
     background: rgba(12,12,12,0.7);
@@ -136,8 +144,8 @@ strong.taxi{
 
   
 }
-/*register form*/
-.card{
+/*login form*/
+.card.login{
 
  right: 80px;
   position: absolute;
@@ -245,7 +253,7 @@ footer {
 
 
 .rgba-gradient {
-  backdrop-filter: blur(4px);
+ 
   background: -moz-linear-gradient(45deg, rgba(42, 27, 161, 0.7), rgba(29, 210, 177, 0.7) 100%);
   background: -webkit-linear-gradient(45deg, rgba(255, 176, 30, 0.7), rgba(0, 0, 0, 0.7) 100%);
   background: -webkit-gradient(linear, 45deg, from(rgba(42, 27, 161, 0.7)), to(rgba(29, 210, 177, 0.7)));
@@ -253,6 +261,11 @@ footer {
   background: linear-gradient(to 45deg, rgba(42, 27, 161, 0.7), rgba(29, 210, 177, 0.7) 100%);
 
 }
+
+.rgba-gradient.blur {
+  backdrop-filter: blur(4px);
+  }
+
 
 
 /*user_register starts below*/
@@ -275,4 +288,111 @@ footer {
 }
 
 
-/*book ride form starts below */
+/*MYPROFILE SIDE NAV CSS*/
+
+
+
+/*body {
+    padding-top: 56px;
+}*/
+
+.sticky-offset {
+    top: 56px;
+}
+
+#body-row {
+    margin-left:0;
+    margin-right:0;
+}
+#sidebar-container {
+    min-height: 100vh;   
+    background-color: black;
+    padding: 0;
+}
+
+/* Sidebar sizes when expanded and expanded */
+.sidebar-expanded {
+    width: 230px;
+}
+.sidebar-collapsed {
+    width: 60px;
+}
+
+/* Menu item*/
+#sidebar-container .list-group a {
+    flex-grow: 1;
+    height: 50px;
+    color: white;
+}
+
+/* Submenu item*/
+#sidebar-container .list-group .sidebar-submenu a {
+    height: 45px;
+    padding-left: 30px;
+    color: white;
+}
+.sidebar-submenu {
+    font-size: 0.9rem;
+}
+
+/* Separators */
+.sidebar-separator-title {
+    background-color: black;
+    color: white;
+    height: 35px;
+}
+.sidebar-separator {
+    background-color: black;
+    height: 25px;
+}
+.logo-separator {
+    background-color: black;    
+    height: 600px;
+}
+
+.bg-dark{
+  background-color: black !important;
+    border-color:black !important;
+
+}
+
+a.bg-dark.list-group-item:hover{
+  background-color: #ffa500 !important;
+  color: white !important;
+    border-color:black !important;
+}
+a.bg-dark.list-group-item.active{
+  background-color: #ffa500 !important;
+  color: white !important;
+    border-color:black !important;
+
+}
+
+/* Closed submenu icon */
+#sidebar-container .list-group .list-group-item[aria-expanded="false"] .submenu-icon::after {
+  content: " \f0d7";
+  font-family: FontAwesome;
+  display: inline;
+  text-align: right;
+  padding-left: 10px;
+
+}
+/* Opened submenu icon */
+#sidebar-container .list-group .list-group-item[aria-expanded="true"] .submenu-icon::after {
+  content: " \f0da";
+  font-family: FontAwesome;
+  display: inline;
+  text-align: right;
+  padding-left: 10px;
+}
+
+
+/*MYPROFILE FORM CSS*/
+
+.row.edit{
+ 
+  margin-bottom: 30px;
+
+}
+
+/*BOOKRIDE CSS*/

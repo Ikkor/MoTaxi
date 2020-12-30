@@ -43,8 +43,10 @@ session_start();
 
   <!-- Full Page Intro -->
   <div class="view" style="background-image: url('../images/bg.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+    
     <!-- Mask & flexbox options-->
-    <div class="mask rgba-gradient d-flex justify-content-center align-items-center">
+    <div class="mask rgba-gradient blur d-flex justify-content-center align-items-center">
+
       <!-- Content -->
       <div class="container">
         <!--Grid row-->
@@ -52,7 +54,7 @@ session_start();
 
 
           <!--Grid column-->
-          <div class="col-md-6 white-text text-center text-md-left mt-xl-5 mb-5 wow fadeInLeft" data-wow-delay="0.3s">
+          <div  class="col-md-6 white-text text-center text-md-left mt-xl-5 mb-5 wow fadeInLeft" data-wow-delay="0.3s">
             <h1 class="h1-responsive font-weight-bold mt-sm-5">Life has never been easier than a ride with MoTaxi! </h1>
             <hr class="hr-light">
             <h6 class="mb-4">Whether you want to book a taxi or arrange your airport transfers, MoTaxi is just what you need!</h6>
@@ -65,8 +67,8 @@ session_start();
           <!--Grid column-->
 
           <!-- Display form login OR USER -->
+ <div  class="col-md-6 white-text text-center text-md-left mt-xl-5 mb-5 wow fadeInLeft" data-wow-delay="0.3s">
 <?php
-
   if(isset($_SESSION['username'])){
    // if($_GET['referer'] == 'login')
     
@@ -84,10 +86,13 @@ session_start();
     }
   ?>
 
+</div>
+
 
 
           <!--Grid column-->
         </div>
+
         <!--Grid row-->
       </div>
       <!-- Content -->
@@ -103,12 +108,13 @@ session_start();
 <!-- Button trigger modal -->
 
 
-<!-- Central Modal Small: Reg pop up -->
+<!-- Central Modal Small-->
 
 <!-- Central Modal Small -->
 
 
 <!--Main Layout-->
+
 
 <!-- 
 <main> 
