@@ -1,19 +1,13 @@
-<?php
+<?php 
+	$host='localhost';
+	$user='root';
+	$password='';
+	$dbname='motaxi';
 
-$server_name = "localhost";
-$user_name = "root";
-$password = "";
-$db_name = "motaxi";
-//$conn = mysqli_connect($server_name ,$user_name,$password , $db_name);
-try
-{
- $conn = new PDO("mysql:host=$server_name;dbname=$db_name", $user_name, $password);
-}
-catch(PDOException $e)
- {
-    echo  $e->getMessage();
- }
+	$dsn='mysql:host='.$host.';dbname='.$dbname;
 
+	$pdo=new PDO($dsn,$user,$password);
 
-
-?>
+	if(!$pdo){
+		echo 'connection failed';
+	}

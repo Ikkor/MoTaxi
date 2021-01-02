@@ -17,13 +17,14 @@
       		<div class = "img1">
 	      		<img src = "../images/steering.png"/>
 	      		<br/>
+	      		<a href = "../pages/driver_register.php">
 		        <button type="button" class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0">Driver</button>
 		    </div>
 
 			<div class ="img2">
 				<img src = "../images/user.png"/>
 	      		<br/>
-		        <a href = "../pages/user_register.php"><button type="button" class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0">User</button></a>
+		        <a href = "../pages/client_register.php"><button type="button" class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0">User</button></a>
 		    </div>
 
 	    </div>

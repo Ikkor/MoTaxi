@@ -1,7 +1,11 @@
 <?php
 session_start();
 
-
+//login error here
+$ErrMsg = '';
+ if(isset($_SESSION['err'])){
+  $ErrMsg = $_SESSION['err'];
+ }
 ?>
 
 <!DOCTYPE html>
@@ -70,21 +74,87 @@ session_start();
  <div  class="col-md-6 white-text text-center text-md-left mt-xl-5 mb-5 wow fadeInLeft" data-wow-delay="0.3s">
 <?php
   if(isset($_SESSION['username'])){
-   // if($_GET['referer'] == 'login')
-    
 
       include("../modules/welcomeback.php");
 
-    //end if
-    // if($_GET['referer'] == 'badlogin')
-    // {
-    //  // to do stuffs here
-    // }//end if
   }
   else {
-      include("../modules/loginform.php");
+
+
+      ?>
+        
+
+
+
+<div class="card login">
+
+
+  <h5 class="card-header text-center" >
+    <strong>Sign in</strong>
+  </h5>
+
+  <!--Card content-->
+  <div class="card-body px-lg-5 pt-0">
+
+    <!-- Form -->
+    <form method = "POST" class="text-center" style="color: black;" action="../modules/loginprocess.php">
+
+      <!-- Email -->
+      <div class="md-form">
+        <input name = "txt_email" type="email" id="materialLoginFormEmail" class="form-control">
+        <label for="materialLoginFormEmail">E-mail</label>
+        <span class="error"><?php echo $ErrMsg?></span><br/>
+      </div>
+
+      <!-- Password -->
+      <div class="md-form">
+        <input name = "txt_password" type="password" id="materialLoginFormPassword" class="form-control">
+        <label for="materialLoginFormPassword">Password</label>
+      </div>
+
+      <div class="d-flex justify-content-around">
+        <div>
+          <!-- Remember me -->
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="materialLoginFormRemember">
+            <label class="form-check-label" for="materialLoginFormRemember">Remember me</label>
+          </div>
+        </div>
+        <div>
+          <!-- Forgot password -->
+          <a href="">Forgot password?</a>
+        </div>
+      </div>
+
+      <!-- Sign in button -->
+      <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" name = "submit" value = "submit"type="submit">Sign in</button>
+
+      <!-- Register -->
+      <p>Not a member?
+        <a href="#" data-toggle=modal data-target="#centralModalSm">Register</a>
+      </p>
+
+      <!-- Social login -->
+      <!-- <p>or sign in with:</p>
+      <a type="button" class="btn-floating btn-fb btn-sm">
+        <i class="fab fa-facebook-f"></i>
+      </a> -->
+
+    </form>
+    <!-- Form -->
+
+  </div>
+
+</div>
+
+
+
+
+<?php
     }
-  ?>
+
+    ?>
+  
 
 </div>
 

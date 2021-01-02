@@ -6,9 +6,7 @@ unset($_SESSION['username']);
 unset($_GET['referer']);
 
 session_destroy();
+
+
+header('location: index.php');
 ?>
-<html>
-<body>
-You are sucessfully logged out !! <a href='index.php'>Click here to log in </a>
-</body>
-</html>

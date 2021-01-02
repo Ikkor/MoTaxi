@@ -1,4 +1,13 @@
-todo: 
+1/1/2021:
 
-- all usernames and password in one table, add a field: acc_type (so that we can use one login form and check user account type)
-- driver details and normal user details are stored separately
+todo: address = disctrict concat txt_address
+
+-edit profile
+-complaints
+
+changed: 
+
+1. changed password regex
+2. added more error checking
+3. implemented registration for driver and clients
+4. 
