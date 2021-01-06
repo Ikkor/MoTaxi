@@ -15,6 +15,7 @@ if(isset($_GET['ref'])){
       $passwordErr = $_SESSION['passwordErr'];
       $dobErr = $_SESSION['dobErr'];
       $addressErr = $_SESSION['addressErr'];
+      $districtErr = $_SESSION['districtErr'];
 
       $name = $_SESSION['name'];
       $email = $_SESSION['email'];
@@ -124,9 +125,11 @@ if(isset($_GET['ref'])){
 
 
   
-
-    <select class = "browser-default custom-select" name="fruit">
-    <option value ="none">Select a district</option>
+  	<div class = "form-group">
+    <label for = "txt_district">District: </label>
+    <span class="error">* <?php echo $districtErr ?></span>
+    <select class = "browser-default custom-select" name="txt_district" id="txt_district">
+    <option value =''>Select a district</option>
     <option value ="port louis">Port-Louis</option>
     <option value ="grand port">Grand-Port</option>
     <option value ="flacq">Flacq</option>
@@ -135,9 +138,8 @@ if(isset($_GET['ref'])){
     <option value = "riviere du rempart">Riviere du Rempart</option>
     <option value = "moka">Moka</option>
     <option value = "savanne">Savanne</option>
- 
-
     </select> 
+</div>
 
     <label for="txt_address">Your address: </label>
     <span class="error">* <?php echo $addressErr ?></span>

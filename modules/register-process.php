@@ -8,7 +8,7 @@
 	sanitizeInput();
 	//var_dump($_POST);
 
-	$dateStartE=$licenseE=$pfpE=$emailE=$nameE=$phoneE=$passE=$dobE=$addrE=1;
+	$districtErr=$dateStartE=$licenseE=$pfpE=$emailE=$nameE=$phoneE=$passE=$dobE=$addrE=1;
 
 	//used to fetch previous values
 	$_SESSION['name']=$_SESSION['phone']=$_SESSION['address']=$_SESSION['email'] = $_SESSION['dateStart']=$_SESSION['dob']=
@@ -16,7 +16,7 @@
 	//used to display errors
 
 	
-	$_SESSION['emailErr'] = $_SESSION['nameErr'] = $_SESSION['phoneErr'] = $_SESSION['passwordErr'] = $_SESSION['dobErr'] = $_SESSION['addressErr'] = $_SESSION['dateStartE']=$_SESSION['licenseE']=  $_SESSION['pfpE'] = $_SESSION['addressErr']='';
+	$_SESSION['districtErr'] = $_SESSION['emailErr'] = $_SESSION['nameErr'] = $_SESSION['phoneErr'] = $_SESSION['passwordErr'] = $_SESSION['dobErr'] = $_SESSION['addressErr'] = $_SESSION['dateStartE']=$_SESSION['licenseE']=  $_SESSION['pfpE'] = $_SESSION['addressErr']='';
 
 // -----------------------------------------------------
 
@@ -138,12 +138,23 @@ else {
 		$_SESSION['addressErr']="An address is required";
 	}
 
+
+	//DISTRICT 
+
+	if( isset($_POST['txt_district']) && $_POST['txt_district']!=''){
+		$addrE=0;
+		$_SESSION['txt_district'] = $_POST['txt_district'];
+	}
+	else{
+		$_SESSION['districtErr']="You must specifify a district";
+	}
+
 // --------------------------------------------
 
 
 
 //if any error occurred, redirect to same appropriate form
-	if( $emailE==1 || $nameE==1 || $phoneE==1 || $passE==1 || $dobE==1 || $addrE==1  ){
+	if( $emailE==1 || $nameE==1 || $phoneE==1 || $passE==1 || $dobE==1 || $addrE==1 || $districtErr ==1 ){
 
 		if($_GET['ref']=='client'){
 			header("Location: ../pages/client_register.php?ref=Err");
@@ -159,7 +170,7 @@ else {
 	}
 
 
-	if(isset($_POST["submit"]) && $emailE==0 && $nameE==0 && $phoneE==0 && $passE==0 && $dobE==0 && $addrE==0 ){
+	if(isset($_POST["submit"]) && $emailE==0 && $nameE==0 && $phoneE==0 && $passE==0 && $dobE==0 && $addrE==0 && $districtErr==0){
 		//do the insert, careful stripslashes
 
 		/*
@@ -185,14 +196,15 @@ else {
 		$phone=$_POST['txt_phone'];
 		$addr=$_POST['txt_address'];
 		$dob=$_POST['txt_dob'];
+		$district=$_POST['txt_district'];
 
 		//---------must be transaction--------------
-		$sql="insert into user VALUES (:id, :email, :password, :utype, :name, :phone, :addr, :dob)";
+		$sql="insert into user VALUES (:id, :email, :password, :utype, :name, :phone, :addr, :dob, :district)";
 
 		$stmt=$pdo->prepare($sql);
 
 		$stmt->
-		execute(['id'=>$id,'email'=>$email,'password'=>$hashed_password,'utype'=>$utype,'name'=>$name,'phone'=>$phone,'addr'=>$addr,'dob'=>$dob]);
+		execute(['id'=>$id,'email'=>$email,'password'=>$hashed_password,'utype'=>$utype,'name'=>$name,'phone'=>$phone,'addr'=>$addr,'dob'=>$dob, 'district'=>$district]);
 
 		$slt=$pdo->query('select MAX(id) as id from user');
 		$idtemp=$slt->fetchAll(PDO::FETCH_ASSOC);

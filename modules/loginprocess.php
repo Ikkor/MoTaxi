@@ -30,26 +30,26 @@ session_start();
 			
 			
 			
-			header('location: ../pages/index.php?ref=err');
+			header('location: ../pages/index.php?error=badlogin');
 			exit();
 
 		}else{//create session variables
 			
 			
 			$_SESSION['id']=$id;
-			$_SESSION['username']=$name;
+			$_SESSION['name']=$name;
 			$_SESSION['email']=$email;
 			$_SESSION['utype']=$utype;
 
 
 
 			if($utype=='client'){
-				header('location: ../pages/myprofile.php');
+				header('location: ../pages/client/client_rides.php');
 				exit();
 
 			}
 			if($utype=='driver'){
-				header('location: ../pages/myprofile.php');
+				header('location: ../pages/driver/driver_vehicles.php');
 				exit();
 
 				
@@ -60,7 +60,7 @@ session_start();
 
 
 	}
-$_SESSION['err'] = "Wrong login credentials.";
-header('location: ../pages/index.php?ref=err');
+//$_SESSION['err'] = "Wrong login credentials.";
+header('location: ../pages/index.php?error=badlogin');
 //session_destroy();
  ?>

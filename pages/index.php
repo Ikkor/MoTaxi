@@ -3,8 +3,14 @@ session_start();
 
 //login error here
 $ErrMsg = '';
- if(isset($_SESSION['err'])){
-  $ErrMsg = $_SESSION['err'];
+ if(isset($_GET['error'])){
+    if($_GET['error']=='badlogin'){
+      $ErrMsg = 'Wrong login credentials';
+    }
+    if($_GET['error']=='notlog'){
+      $ErrMsg = 'Please login first.';
+    }
+ // $ErrMsg = $_SESSION['err'];
  }
 ?>
 
@@ -38,11 +44,9 @@ $ErrMsg = '';
 <header>
   <!--Navbar-->
  <?php 
- //  $_GET['referer'] = 'login';
-  //$_SESSION['username'] = 'tom';
-  //$username = $_SESSION['username'];
 
  $activemenu = "home";
+ 
  include('../includes/navbar.php'); ?>
 
   <!-- Full Page Intro -->
@@ -62,7 +66,11 @@ $ErrMsg = '';
             <h1 class="h1-responsive font-weight-bold mt-sm-5">Life has never been easier than a ride with MoTaxi! </h1>
             <hr class="hr-light">
             <h6 class="mb-4">Whether you want to book a taxi or arrange your airport transfers, MoTaxi is just what you need!</h6>
-            <a class="btn request">Request Ride</a>
+            <?php if(isset($_SESSION['utype']) && $_SESSION['utype']=='driver'){
+            echo '<a style = "color: white !important;" href = "driver/riderequests.php" class="btn request">Ride Requests</a>';
+             } else {
+              echo '<a style = "color: white !important;" href = "client/bookride.php" class="btn request">Book a Ride</a>';
+             } ?>
   	        <a class="btn btn-outline-white">Learn more</a>
 
 
@@ -73,7 +81,7 @@ $ErrMsg = '';
           <!-- Display form login OR USER -->
  <div  class="col-md-6 white-text text-center text-md-left mt-xl-5 mb-5 wow fadeInLeft" data-wow-delay="0.3s">
 <?php
-  if(isset($_SESSION['username'])){
+  if(isset($_SESSION['id'])){
 
       include("../modules/welcomeback.php");
 

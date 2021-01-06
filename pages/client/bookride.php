@@ -1,4 +1,6 @@
-<?php session_start(); ?>
+<?php require('../../modules/login_check.php'); ?>
+
+<!-- T H I S   P A G E   I S    A   P R T O  Y P E   -->
 <!doctype html>
 <html>
     <head>
@@ -11,8 +13,8 @@
         <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css' rel='stylesheet'>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
         
-        <link href = '../css/style.css' rel = 'stylesheet' type = 'text/css'> 
-        <link href = '../css/bookride.css' rel = 'stylesheet' type = 'text/css'> 
+        <link href = '../../css/style.css' rel = 'stylesheet' type = 'text/css'> 
+        <link href = '../../css/bookride.css' rel = 'stylesheet' type = 'text/css'> 
 
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
@@ -40,7 +42,7 @@
     //     }
 
 	$activemenu = 'bookride';
-	include('../includes/navbar.php');
+	include('includes/client_navbar.php');
 	?>
 	
 
@@ -129,9 +131,9 @@
 </div>
 </div>
 
- <script type = 'text/javascript' src ='../javascript/rideform.js'></script>
+ <script type = 'text/javascript' src ='../../javascript/rideform.js'></script>
 
- <script type = 'text/javascript' src='../javascript/main.js'></script>
+ <script type = 'text/javascript' src='../../javascript/main.js'></script>
  
 
                             </body>
