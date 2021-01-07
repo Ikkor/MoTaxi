@@ -142,7 +142,7 @@ else {
 	//DISTRICT 
 
 	if( isset($_POST['txt_district']) && $_POST['txt_district']!=''){
-		$addrE=0;
+		$districtErr=0;
 		$_SESSION['txt_district'] = $_POST['txt_district'];
 	}
 	else{
