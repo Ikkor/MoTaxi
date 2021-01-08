@@ -72,8 +72,8 @@ require ('../../modules/login_check.php');
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">Vehicule</th>
-      <th scope="col">Matriculation</th>
+      <th scope="col">Vehicle</th>
+      <th scope="col">License plate</th>
       <th scope="col">Service(s)</th>
       <th scope="col">#Seats</th>
       <th scope="col">Model</th>

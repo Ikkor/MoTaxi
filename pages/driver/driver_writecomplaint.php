@@ -77,8 +77,8 @@ require ('../../includes/db_connect.php');
 
       <div class="col">
             <div class="md-form">
-              <textarea style= id="form10" class="md-textarea form-control" rows="6" name = "txt_desc" ></textarea>
-              <label for="txt_desc">Give us a brief description of what happened so that we can look into it: </label>
+              <textarea id="txt_comment" class="md-textarea form-control" rows="6" name = "txt_comment" ></textarea>
+              <label for="txt_comment">Give us a brief description of what happened so that we can look into it: </label>
             </div>
           </div>
 

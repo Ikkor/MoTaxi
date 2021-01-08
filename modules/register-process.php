@@ -197,6 +197,7 @@ else {
 		$addr=$_POST['txt_address'];
 		$dob=$_POST['txt_dob'];
 		$district=$_POST['txt_district'];
+		$acc='no';
 
 		//---------must be transaction--------------
 		$sql="insert into user VALUES (:id, :email, :password, :utype, :name, :phone, :addr, :dob, :district)";
@@ -300,11 +301,11 @@ else {
 				//$licenseDestination;
 				//$fileDestinationP;
 
-				$newsql="insert into driver_details VALUES (:id, :dateStart, :dateEnrolled, :licenseDestination, :fileDestinationP)";
+				$newsql="insert into driver_details VALUES (:driverId, :dateStart, :dateEnrolled, :license, :pfp, :accepted)";
 
 				$newstmt=$pdo->prepare($newsql);
 				$newstmt->
-				execute(['id'=>$id,'dateStart'=>$dateStart,'dateEnrolled'=>$dateEnrolled,'licenseDestination'=>$licenseDestination,'fileDestinationP'=>$fileDestinationP]);
+				execute(['driverId'=>$id,'dateStart'=>$dateStart,'dateEnrolled'=>$dateEnrolled,'license'=>$licenseDestination,'pfp'=>$fileDestinationP,'accepted'=>$acc]);
 			}
 		}
 

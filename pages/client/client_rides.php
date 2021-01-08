@@ -116,7 +116,7 @@ require ('../../modules/login_check.php');
         $photo=$pdo->prepare('select pfp from driver_details where driverId=:driver_id');
         $photo->execute([ 'driver_id'=>$driver_id ]);
         $pfp=$photo->fetch();
-        $pfplink='../'.$pfp['pfp'];
+        $pfplink="../".$pfp['pfp'];
         //echo $pfplink;
 
         echo "<tr><td><img src='".$pfplink."' border=3 height=100 width=100></img>"."</td><td>".$row['date']."</td><td>".$row['time_in']."</td><td>".$result['name']."</td><td>".$row['from_loc']."</td><td>".$row['to_loc']."</td><td>"."<a style = 'color:blue;'href='client_complaints.php?driverId=".$driver_id."'>Write complaint</a> </td></tr>";

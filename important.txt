@@ -1,4 +1,9 @@
 
+1/7/2021:
+-working on edit profile form [driver & client]
+-make a dashboard for admin
+
+
 1/6/2021:
 -most basic functionalities completed, working on edit profile..
 
@@ -22,6 +27,7 @@ so far completed:
 
 todo:
 -added popups when any operation is successful, a modal popup like the register popup. maybe same with error
+-add erorr in vehicle update/insert form
 
 
 

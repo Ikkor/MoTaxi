@@ -98,7 +98,7 @@ if (file_exists($_FILES['vehcimg']['tmp_name']) || is_uploaded_file($_FILES['veh
 		$stmt->
 		execute(['reg_no1'=>$reg_no,'s_type'=>$s_type,'seat'=>$seat,'model'=>$model,'year'=>$year,'ac'=>$ac,'boot'=>$boot,'reg_no2'=>$oldreg,'imgDestination'=>$imgDestination]);
 
-		// header("location: driverprofile.php?message=vehicule_updated");
+		 header("location: driver_vehicles.php?message=vehicule_updated");
 
 		echo $imgDestination;
 
@@ -109,7 +109,7 @@ if (file_exists($_FILES['vehcimg']['tmp_name']) || is_uploaded_file($_FILES['veh
 		$stmt=$pdo->prepare("delete from vehicules where reg_no=:reg_no");
 		$stmt->execute(['reg_no'=>$oldreg]);
 
-		header("location: driverprofile.php?message=vehicule_deleted");
+		header("location: driver_vehicles.php?message=vehicule_deleted");
 		//deleting
 	}
 	else{

@@ -24,7 +24,7 @@
 			<div class ="img2">
 				<img src = "../images/user.png"/>
 	      		<br/>
-		        <a href = "../pages/client_register.php"><button type="button" class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0">User</button></a>
+		        <a href = "../pages/client_register.php"><button type="button" class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0">Client</button></a>
 		    </div>
 
 	    </div>

@@ -38,10 +38,10 @@
 			VALUES (:complaintId, :driverId, :userId, :comment, :date , :location, :status)");
 
 		$stmt2->execute(['complaintId'=>$complaintId, 'driverId'=>$driverId,'userId'=>$userId,'comment'=>$comment,'date'=>$date,'location'=>$location, 'status'=>$status]);
+		header('location: driver_rides.php');
 
 
 	}
 
 
-	header('location: driver_rides.php');
  ?>

@@ -1,5 +1,5 @@
 <?php 
-session_start();
+
 	require '../../includes/db_connect.php';
 	require '../../modules/inputsanitizer.php';
 	require '../../modules/login_check.php';
