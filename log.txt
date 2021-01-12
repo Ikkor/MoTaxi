@@ -1,0 +1,56 @@
+1/12/2021
+-added admin, hr
+
+
+1/7/2021:
+-working on edit profile form [driver & client]
+-make a dashboard for admin
+
+
+1/6/2021:
+-most basic functionalities completed, working on edit profile..
+
+[to properly setup this version]:
+-add the new district field
+-note that images wont display as the uploads is diff directory, kindly create new drivers/add new vehicles
+-loging with old user might cause errors
+
+[changes]
+*driver can now update their vehicle picture
+*topnavbar, sidenavbar, and index changes according to usertype.
+*added district field varchar after dob in DATABASE
+
+
+
+so far completed:
+-driver can edit,add, delete vehicle
+-both driver and user can file complaints
+-login/register/logout
+
+
+todo:
+-added popups when any operation is successful, a modal popup like the register popup. maybe same with error
+-add erorr in vehicle update/insert form
+
+
+
+1/4/2021:
+*working on driver..
+-completed client functionalities as per php received on 1/1/2021
+-added sidenav include
+-added complaint pages for client against driver
+-added different menunav for driver,client,guest
+
+1/1/2021:
+
+todo: add district field
+
+-edit profile
+-complaints
+
+changed: 
+
+1. changed password regex
+2. added more error checking
+3. implemented registration for driver and clients
+4. 

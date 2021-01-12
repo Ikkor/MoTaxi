@@ -17,7 +17,7 @@ require ('../../includes/db_connect.php');
 	$check=$stmt->fetch(PDO::FETCH_ASSOC);
 
   $piclink=$check['pic'];
-  $_SESSION['piclink'] = $piclink;
+  
 
  
 
@@ -88,8 +88,8 @@ require ('../../includes/db_connect.php');
 	<!-- reg_no s_type owned_by #seat model_name year a/c boot_capacity pic -->
 <div class="form-col mb-4">
 	<div class="row edit">
-		<label for="txt_regno">Matriculation</label>
-		<input type="text" name="txt_regno"class="form-control" id="txt_regno" value="<?php echo $check['reg_no']?>">
+		<label for="txt_regno">Vehicle registration plate</label>
+		<input required="required" type="text" readonly name="txt_regno"class="form-control" id="txt_regno" value="<?php echo $check['reg_no']?>">
 	</div>
 
 
@@ -119,19 +119,19 @@ require ('../../includes/db_connect.php');
 
 		 <div class="row edit">
               <h5>Number of seats </h5>
-                <input type="number" name = "txt_#seat" id="txt_#seat" class="form-control" Min=1 Max=30  value="<?php echo $check['seat']; ?>">
+                <input required = "required" type="number" name = "txt_#seat" id="txt_#seat" class="form-control" Min=1 Max=30  value="<?php echo $check['seat']; ?>">
 
         </div>
 
 		 <div class="row edit">
           <h5>Model</h5>
-            <input type="text" name = "txt_model" id="txt_model"  value="<?php echo $check['model_name']?>" class="form-control" >
+            <input required="required" type="text" name = "txt_model" id="txt_model"  value="<?php echo $check['model_name']?>" class="form-control" >
         </div>
 
 		
  		<div class="row edit">
           <h5>Year</h5>
-            <input type="number" Min = 2000 name = "txt_year" id="txt_year" class="form-control" value="<?php echo $check['year']?>">
+            <input required="required" type="number" Min = 2000 Max = '<?php echo date("Y"); ?>' name = "txt_year" id="txt_year" class="form-control" value="<?php echo $check['year']?>">
         </div>
 
 
@@ -141,7 +141,7 @@ require ('../../includes/db_connect.php');
           
           
           
-          <input class="form-check-input" type="radio" name="txt_ac" id="txt_ac" value="no"  <?php if($check['ac']=='no'){echo 'checked';}?>>
+          <input required = "required" class="form-check-input" type="radio" name="txt_ac" id="txt_ac" value="no"  <?php if($check['ac']=='no'){echo 'checked';}?>>
           <label class="form-check-label" for="txt_ac">
             No
           </label>
@@ -159,8 +159,8 @@ require ('../../includes/db_connect.php');
 
 		
  	<div class="row edit">
-        <h5>Boot Capacity</h5>
-        <input type="text" name = "txt_bootcap" id="txt_bootcap" class="form-control" value="<?php echo $check['boot_capacity']?>">
+        <h5>Boot Capacity(Litres)</h5>
+        <input Min=100 required="required" type="number" name = "txt_bootcap" id="txt_bootcap" class="form-control" value="<?php echo $check['boot_capacity']?>">
       </div>
 
    
@@ -173,7 +173,7 @@ require ('../../includes/db_connect.php');
     </div>
         <div class="form group">
             <p> Please ensure the image is properly lit. </p>
-            <input type="file" accept=".png, .jpeg, .jpg" name = "vehcimg" id="vehcimg" class="form-control" onchange="loadFile(event)" >
+            <input requried="required" type="file" accept=".png, .jpeg, .jpg" name = "vehcimg" id="vehcimg" class="form-control" onchange="loadFile(event)" >
 
 
             <script>

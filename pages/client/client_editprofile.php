@@ -4,7 +4,7 @@ require('../../includes/db_connect.php');
 require('../../modules/inputsanitizer.php');
 
 // errors
-$txt_nameErr=$txt_passErr=$txt_passErr=$txt_districtErr=$txt_addressErr=$txt_picErr=$txt_phoneErr=$txt_npwdErr='';
+$txt_nameErr=$txt_passErr=$txt_passErr=$txt_districtErr=$txt_addressErr=$txt_phoneErr=$txt_npwdErr='';
 
 /*
     verify that regno belong to session[id]
@@ -16,21 +16,15 @@ $txt_nameErr=$txt_passErr=$txt_passErr=$txt_districtErr=$txt_addressErr=$txt_pic
     $stmt=$pdo->prepare("select * from user where id=:id");
     $stmt->execute(['id'=>$id]);
     $check=$stmt->fetch(PDO::FETCH_ASSOC);
+        //id email password utype name phone address dob
 
-    $stmt=$pdo->prepare("select * from driver_details where driverId=:id");
-    $stmt->execute(['id'=>$id]);
-    $img=$stmt->fetch(PDO::FETCH_ASSOC);
 
-    /*
-    for the images:
-    get old names
-    get new files prepare for upload and upload
-    ensure overwrite of old
-    */
-    $oldLicLink='../'.$img['license'];
-    $oldPfpLink='../'.$img['pfp'];
-    $allowed=array('jpg', 'jpeg', 'png');
 
+    $hashpwd=$check['password'];
+    $nameE=$opwdE=$npwdE=$addrE=$phoneE=$districtErr=1;
+    sanitizeInput();
+
+   
     if(isset($_POST['submit']) || isset($_POST['delete']) ){
         $name=$_POST['txt_name'];
         $opwd=$_POST['txt_opwd'];
@@ -42,58 +36,14 @@ $txt_nameErr=$txt_passErr=$txt_passErr=$txt_districtErr=$txt_addressErr=$txt_pic
 
 
 
-        //----------License-----------------------------------------------------
-   
-        $LicName=$_FILES['license']['name'];
-        $LicTempName=$_FILES['license']['tmp_name'];
-        $LicSize=$_FILES['license']['size'];
-        $LicError=$_FILES['license']['error']; //error 4 means no file uploaded
-
-        $LicExt=explode('.',$LicName);
-        $LicActualExt=strtolower(end($LicExt));
-
-
-        if(in_array($LicActualExt, $allowed) && $LicError==0 /*&& $pfpSize<1000000*/ ){
-            //get a new name and assign location
-            $LicDestination=$oldLicLink;
-            //file ready for upload
-        }else{
-            $txt_picErr='An error occured, please try again.';
-            //echo 'An error occured';
-        }
-
-
-    //---------pfp-------------------------------------------------------------
-        $pfpName=$_FILES['pfp']['name'];
-        $pfpTempName=$_FILES['pfp']['tmp_name'];
-        $pfpSize=$_FILES['pfp']['size'];
-        $pfpError=$_FILES['pfp']['error']; //error 4 means no file uploaded
-
-        $pfpExt=explode('.',$pfpName);
-        $pfpActualExt=strtolower(end($pfpExt));
-
-
-        if(in_array($pfpActualExt, $allowed) && $pfpError==0 /*&& $pfpSize<1000000*/ ){
-            //get a new name and assign location
-            $pfpDestination=$oldPfpLink;
-            //file ready for upload
-        }else{
-           // echo 'An error occured';
-            $txt_picErr='An error occured, please try again.';
-
-        }
-
-        //-----------------------------------------------------------------
+        
     }
 
     
 
-    //name phone address password license pfp
+    
 
-    $hashpwd=$check['password'];
-    $nameE=$opwdE=$npwdE=$addrE=$phoneE=1;
-    sanitizeInput();
-    //from form
+    
 
 
     if(isset($_POST['submit'])){
@@ -110,7 +60,7 @@ $txt_nameErr=$txt_passErr=$txt_passErr=$txt_districtErr=$txt_addressErr=$txt_pic
         if(isset($npwd) && isset($npwdr) && $npwd==$npwdr && preg_match($rexPass,$npwd)){//must comply to pregmatch and to npwdr
             $npwdE=0;
         }
-       if($npwdE==1 && !empty($npwd) && !empty($npwdr)) $txt_npwdErr = "Please enter a strong password";
+        if($npwdE==1 && !empty($npwd) && !empty($npwdr)) $txt_npwdErr = "Please enter a strong password";
       
         $rexPhone="/[5][0-9]{7}/";
         if( isset($phone) ){
@@ -152,18 +102,7 @@ $txt_nameErr=$txt_passErr=$txt_passErr=$txt_districtErr=$txt_addressErr=$txt_pic
             $stmt->
             execute(['name'=>$name,'newhash'=>$newhash,'addr'=>$addr,'phone'=>$phone,'district'=>$district,'id'=>$id]);
 
-            //this part goes to isset $post submit
-            if($pfpError==4 || $LicError==4){
-                //upload field left blank, do not upload new file
-            }
-            if($pfpError==0){
-                move_uploaded_file($pfpTempName, $pfpDestination);
-            }
-
-            if($LicError==0){
-                move_uploaded_file($LicTempName, $LicDestination);
-            }
-
+            
 
             header("location: driver_editprofile.php?message=success");
 
@@ -196,7 +135,7 @@ $txt_nameErr=$txt_passErr=$txt_passErr=$txt_districtErr=$txt_addressErr=$txt_pic
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Driver profile</title>
+    <title>Client edit profile</title>
     <meta charset = "utf-8">
     <meta name = "viewport" content = "width=device-width, initial-scale=1">
     <!-- Font Awesome -->
@@ -232,7 +171,7 @@ $txt_nameErr=$txt_passErr=$txt_passErr=$txt_districtErr=$txt_addressErr=$txt_pic
 
 
  $activemenu = "profile";
- include('includes/driver_navbar.php'); ?>
+ include('includes/client_navbar.php'); ?>
 
   <!-- Full Page Intro -->
 
@@ -242,7 +181,7 @@ $txt_nameErr=$txt_passErr=$txt_passErr=$txt_districtErr=$txt_addressErr=$txt_pic
 <div class="row" id="body-row" >
     <?php 
     $activeside = 'profile';
-    include('includes/driver_side_navbar.php');
+    include('includes/client_side_navbar.php');
     ?>
     
 
@@ -375,63 +314,7 @@ $txt_nameErr=$txt_passErr=$txt_passErr=$txt_districtErr=$txt_addressErr=$txt_pic
 </div>
 
 
-<div class="text-center border border-light p-5 right form">
 
-    <div class="form-col mb-4">
-
-
-    <div class="row edit">
-        <h4 style>Profile picture </h4>
-    </div>
-
-        <div class="row edit">
-            <img src="<?php echo $oldPfpLink?>" id = "pfp" alt="Profile picture" width="170" height="170">
-    </div>
-        <div class="row edit">
-            <input type="file" accept=".png,.jpeg,.jpg" name = "pfp" id="pfp" class="form-control" onchange="loadFile(event)" >
-
-            <span class="error"><?php echo $txt_picErr?> </span><br/>
-             <script>
-  var loadFile = function(event) {
-    var output = document.getElementById('pfp');
-    output.src = URL.createObjectURL(event.target.files[0]);
-    output.onload = function() {
-      URL.revokeObjectURL(output.src) // free memory
-    }
-  };
-</script>
-        </div>
-
-
-
-
-<div class="row edit">
-        <h4 style>License picture </h4>
-    </div>
-<div class="row edit">
-            <img src="<?php echo $oldLicLink ?>" id = "license" width="170" height="170">
-    </div>
-
-        <div class="row edit">
-            <input type="file" accept=".png,.jpeg,.jpg" name = "license" id="license" class="form-control" onchange="loadFile1(event)" >
-
-            <span class="error"><?php echo $txt_picErr?> </span><br/>
-             <script>
-  var loadFile1 = function(event) {
-    var output = document.getElementById('license');
-    output.src = URL.createObjectURL(event.target.files[0]);
-    output.onload = function() {
-      URL.revokeObjectURL(output.src) // free memory
-    }
-  };
-</script>
-        </div>
-           
-        </div>
-
-
-
-    </div>
     
 
 </div>

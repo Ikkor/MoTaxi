@@ -1,0 +1,23 @@
+---1---
+driver>>editProfile.php
+line 160-164
+line 172 changed header("location: clientProfile.php?message=deleteSuccess"); to driverProfile
+
+client>>editProfile
+line 89-93
+
+added active field in db
+impacts:
+driver should not be able to login if active = 0
+solution:
+change loginMagic.php line 28
+
+---2---
+edited account creat general to accomodate active field
+
+---3---
+added option to update vehc photo at update driver profile
+edited editvehc.php line 24 added enctype
+					line 62 added file field for update
+
+edited updatevehc.php line 52-91 added overwrite feature for image update

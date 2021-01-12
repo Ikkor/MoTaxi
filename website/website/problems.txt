@@ -1,4 +1,0 @@
-check if duplicate mail at acc creation
-close $pdo
-add transaction 
-check for duplicate reg_no at insert and update

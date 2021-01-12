@@ -1,18 +1,17 @@
 <?php 
-session_start();
-	require 'inputsanitizer.php';
-	
+	require 'functions/functions.php';
 	$emailE=1;
 	sanitizeInput();// trimmed and remove specialchars
 
 	if( isset($_POST['txt_email']) && filter_var($_POST['txt_email'], FILTER_VALIDATE_EMAIL)){
 		$emailE=0;
 	}
+
 	if( isset($_POST['submit']) && $emailE==0){
-		require '../includes/db_connect.php';
+		require 'config/dbconn.php';
 		//get the data
 		$email=$_POST['txt_email'];
-		$pwd=$_POST['txt_password'];
+		$pwd=$_POST['txt_pass'];
 
 		$loginstmt=$pdo->prepare('select * from user where email=:email');
 		$loginstmt->execute(['email'=>$email]);
@@ -27,40 +26,25 @@ session_start();
 
 		
 		if(!$login || !password_verify($pwd, $hashpwd) || $login['active']=='0'){
-			
-			
-			
-			header('location: ../pages/index.php?error=badlogin');
-			exit();
-
+			header('location: loginPage.php?error=wronglogin');
 		}else{//create session variables
-			
-			
+			session_start();
 			$_SESSION['id']=$id;
 			$_SESSION['name']=$name;
 			$_SESSION['email']=$email;
 			$_SESSION['utype']=$utype;
 
-
-
 			if($utype=='client'){
-				header('location: ../pages/client/client_rides.php');
-				exit();
+				header('location: client/clientprofile.php');
 
 			}
 			if($utype=='driver'){
-				header('location: ../pages/driver/driver_vehicles.php');
-				exit();
-
-				
-
-				//sucess
+				header('location: driver/driverprofile.php');
 			}
 		}
 
 
 	}
-//$_SESSION['err'] = "Wrong login credentials.";
-header('location: ../pages/index.php?error=badlogin');
-//session_destroy();
+
+
  ?>

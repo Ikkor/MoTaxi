@@ -100,7 +100,7 @@ if(isset($_GET['ref'])){
         <div class="col">
             <!-- Username -->
             <label for="txt_name">Full Name: </label>
-            <input type="text" name = "txt_name" id="defaultRegisterFormName" class="form-control" placeholder="e.g John Doe" value = "<?php echo $name ?>">
+            <input type="text" name = "txt_name" id="defaultRegisterFormName" class="form-control" pattern = "\b[A-Z][a-z]*( [A-Z][a-z]*)*\b" title = "Your name(s) should start with a capital letter" placeholder="e.g John Doe" value = "<?php echo $name ?>">
 
             <span class="error">*<?php echo $nameErr;?></span><br/>
         </div>
@@ -110,23 +110,23 @@ if(isset($_GET['ref'])){
     <!-- E-mail -->
     <label for="txt_email">Email Address: </label>
     <span class="error">* <?php echo $emailErr;?></span><br/>
-    <input type="email" id="defaultRegisterFormEmail" name = "txt_email" class="form-control mb-4" placeholder="johndoe@limem.com" value = "<?php echo $email ?>">
+    <input type="email" id="defaultRegisterFormEmail" name = "txt_email" class="form-control mb-4" pattern = "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title = "someone@email.com" placeholder="johndoe@limem.com" value = "<?php echo $email ?>">
 
     <!-- Phone number -->
     <label for="txt_phone">Phone Number: </label>
     <span class="error">*<?php echo $phoneErr;?></span><br/>
-    <input type="text" id="defaultRegisterFormPhone" name = "txt_phone" class="form-control mb-4" placeholder="5XXXXXXX" value = "<?php echo $phone ?>">
+    <input type="text" id="defaultRegisterFormPhone" name = "txt_phone" class="form-control mb-4" placeholder="5XXXXXXX" pattern = "[5][0-9]{7}" title = "Should start with 5 and not exceed a length of 8 digits" value = "<?php echo $phone ?>">
 
     <!-- DOB -->
     <label for="txt_dob">Date of Birth: </label>
     <span class="error">*<?php echo $dobErr;?></span><br/>
-    <input type="date" id="defaultRegisterFormDate" name = "txt_dob" class="form-control mb-4" value = "<?php echo $dob ?>">
+    <input required = "required" type="date" id="defaultRegisterFormDate" name = "txt_dob" class="form-control mb-4" value = "<?php echo $dob ?>">
     
 
     <!-- Password -->
     <label for="txt_phone">Password: </label>
     <span class="error">*<?php echo $passwordErr?></span><br/>
-    <input type="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Enter password" aria-describedby="defaultRegisterFormPasswordHelpBlock" name = "txt_pass">
+    <input type="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Enter password" aria-describedby="defaultRegisterFormPasswordHelpBlock" name = "txt_pass" title=" A combination of atleast 1 symbol, digit, lowercase, uppercase and of length 8." pattern='^(?=.*\d)(?=.*[@#\-_$%^&+=§!\?])(?=.*[a-z])(?=.*[A-Z])[0-9A-Za-z@#\-_$%^&+=§!\?]{8,20}$'>
    
 
     <!-- confirm password -->
@@ -138,28 +138,28 @@ if(isset($_GET['ref'])){
     <!-- Date started taxi -->
     <label for="txt_dateStart">You are a registered taxi driver since: </label>
     <span class="error">* <?php echo $dateStartE?></span><br/>
-    <input type="date" id="defaultRegisterFormDate" name = "txt_dateStart" class="form-control mb-4" value = "<?php echo $dateStart ?>">
+    <input required = "required" type="date" id="defaultRegisterFormDate" name = "txt_dateStart" class="form-control mb-4" value = "<?php echo $dateStart ?>">
 
     <!-- license  -->
   <div class="form-row mb-4">
     <div class = "col">
     <label for = "filelicense">Upload a picture of your license:  </label>
     <span class="error">* <?php echo $licenseE ?></span>
-    <input type="file" accept = ".png, .jpeg, .jpg" id="filelicense" name = "filelicense" class=".form-control-file">
+    <input required = "required" type="file" accept = ".png, .jpeg, .jpg" id="filelicense" name = "filelicense" class=".form-control-file">
   </div>
 
     <div class = "col">
     <!-- profile picture -->
     <label for = "filepfp">Please select a profile picture (can edit later) :</label>
     <span class="error">* <?php echo $pfpE ?></span>
-    <input type="file" accept = ".png, .jpeg, .jpg" id="filepfp" name = "filepfp" class=".form-control-file">
+    <input required = "required" type="file" accept = ".png, .jpeg, .jpg" id="filepfp" name = "filepfp" class=".form-control-file">
   </div>
 </div>
   
     
   <div class="form-group">
     <span class="error">* <?php echo $districtErr ?></span>    
-    <select class = "browser-default custom-select" name="txt_district" id="txt_district">
+    <select required="required" class = "browser-default custom-select" name="txt_district" id="txt_district">
     <option value =''>Select a district</option>
     <option value ="port louis">Port-Louis</option>
     <option value ="grand port">Grand-Port</option>
@@ -172,9 +172,9 @@ if(isset($_GET['ref'])){
     </select> 
   </div>
 
-    <label for="txt_address">Your address: </label>
+    <label  for="txt_address">Your address: </label>
     <span class="error">* <?php echo $addressErr ?></span>
-    <input type="text" 
+    <input required="required" pattern="[A-Za-z0-9]+" type="text" 
          class="form-control mb-4" 
          id="txt_address" 
          placeholder="e.g  queen elizabeth II avenue, place d'armes"

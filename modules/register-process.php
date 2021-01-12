@@ -198,14 +198,15 @@ else {
 		$dob=$_POST['txt_dob'];
 		$district=$_POST['txt_district'];
 		$acc='no';
+		$active=1;
 
 		//---------must be transaction--------------
-		$sql="insert into user VALUES (:id, :email, :password, :utype, :name, :phone, :addr, :dob, :district)";
+		$sql="insert into user VALUES (:id, :email, :password, :utype, :name, :phone, :addr, :dob, :district, :active)";
 
 		$stmt=$pdo->prepare($sql);
 
 		$stmt->
-		execute(['id'=>$id,'email'=>$email,'password'=>$hashed_password,'utype'=>$utype,'name'=>$name,'phone'=>$phone,'addr'=>$addr,'dob'=>$dob, 'district'=>$district]);
+		execute(['id'=>$id,'email'=>$email,'password'=>$hashed_password,'utype'=>$utype,'name'=>$name,'phone'=>$phone,'addr'=>$addr,'dob'=>$dob, 'district'=>$district, 'active'=>$active]);
 
 		$slt=$pdo->query('select MAX(id) as id from user');
 		$idtemp=$slt->fetchAll(PDO::FETCH_ASSOC);

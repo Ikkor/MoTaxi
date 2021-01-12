@@ -1,11 +1,12 @@
 <?php 
-	require ('../../modules/login_check.php');
-	require ('../../includes/db_connect.php');
-	require ('../../modules/inputsanitizer.php');
+	require '../config/loginCheck.php';//incldue session start
+	require '../config/dbconn.php';
+	require '../functions/functions.php';
 
 	sanitizeInput();
 	$oldreg=$_SESSION['old_reg_no'];
 	//grap values
+	$reg_no=$_POST['txt_regno'];//not<0
 	$s_type=$_POST['txt_stype'];//in simple day package
 	$seat=$_POST['txt_#seat'];//not<1
 	$model=$_POST['txt_model'];//not empty
@@ -13,12 +14,10 @@
 	$ac=$_POST['txt_ac'];//either yes or no
 	$boot=$_POST['txt_bootcap'];//not<0
 
-
-	$piclink=$_SESSION['piclink'];
-	$imgDestination = $piclink; //if no image uploaded, keep old path
-
-	$imgE=$s_typeE=$seatE=$modelE=$yearE=$acE=$bootE=1;
-	
+	$regDup=$reg_noE=$s_typeE=$seatE=$modelE=$yearE=$acE=$bootE=1;
+	if($reg_no>=0){//valid
+		$reg_noE=0;
+	}
 	$s_type=strtolower($s_type);
 	if($s_type=='simple' || $s_type=='package'){
 		$s_typeE=0;
@@ -40,20 +39,17 @@
 		$bootE=0;
 	}
 
-	
+	$stmt=$pdo->prepare("select * from vehicules where reg_no=:reg_no");
+	$stmt->execute(['reg_no'=>$reg_no]);
+	$resultcheck=$stmt->fetch(PDO::FETCH_ASSOC);
 
 
-	echo $reg_noE;
-	echo $s_typeE;
-	echo $seatE;
-	echo $modelE;
-	echo $yearE;
-	echo $acE;
-	echo $bootE;
-	//echo $regDup;
+	if($reg_no!=$resultcheck['reg_no']){
+		$regDup=0;
+	}//it works
 
 
-$stmt=$pdo->prepare("select * from vehicules where reg_no=:reg_no");
+	$stmt=$pdo->prepare("select * from vehicules where reg_no=:reg_no");
 	$stmt->execute(['reg_no'=>$oldreg]);
 	$img=$stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -62,10 +58,10 @@ $stmt=$pdo->prepare("select * from vehicules where reg_no=:reg_no");
 
 	$allowed=array('jpg', 'jpeg', 'png');
 
-    $PicName=$_FILES['vehcimg']['name'];
-    $PicTempName=$_FILES['vehcimg']['tmp_name'];
-    $PicSize=$_FILES['vehcimg']['size'];
-    $PicError=$_FILES['vehcimg']['error'];//error 4 means no file uploaded
+    $PicName=$_FILES['imgVehc']['name'];
+    $PicTempName=$_FILES['imgVehc']['tmp_name'];
+    $PicSize=$_FILES['imgVehc']['size'];
+    $PicError=$_FILES['imgVehc']['error'];//error 4 means no file uploaded
 
     $PicExt=explode('.',$PicName);
     $PicActualExt=strtolower(end($PicExt));
@@ -79,12 +75,12 @@ $stmt=$pdo->prepare("select * from vehicules where reg_no=:reg_no");
         echo 'An error occured';
     }
 
-	if(isset($_POST['submit']) && $reg_noE==0 && $s_typeE==0 && $seatE==0 && $modelE==0 && $yearE==0 && $acE==0 && $bootE==0){
+	if(isset($_POST['submit']) && $reg_noE==0 && $s_typeE==0 && $seatE==0 && $modelE==0 && $yearE==0 && $acE==0 && $bootE==0 && $regDup==0){
 		
-		$stmt=$pdo->prepare("update vehicules set s_type=:s_type, seat=:seat, model_name=:model,year=:year ,ac=:ac, boot_capacity=:boot where reg_no=:reg_no");
+		$stmt=$pdo->prepare("update vehicules set reg_no=:reg_no1,s_type=:s_type,seat=:seat, model_name=:model,year=:year ,ac=:ac, boot_capacity=:boot where reg_no=:reg_no2");
 
 		$stmt->
-		execute(['s_type'=>$s_type,'seat'=>$seat,'model'=>$model,'year'=>$year,'ac'=>$ac,'boot'=>$boot,'reg_no'=>$oldreg]);
+		execute(['reg_no1'=>$reg_no,'s_type'=>$s_type,'seat'=>$seat,'model'=>$model,'year'=>$year,'ac'=>$ac,'boot'=>$boot,'reg_no2'=>$oldreg]);
 
 		if($PicError==4){
 			//upload field left blank, do not upload new file
@@ -94,19 +90,18 @@ $stmt=$pdo->prepare("select * from vehicules where reg_no=:reg_no");
 		}
 
 
-		header("location: driver_vehicles.php?message=vehicule_updated");
+		header("location: driverprofile.php?message=vehicule_updated");
 
 		//updating
 	}
 	else if(isset($_POST['delete'])){
 		$stmt=$pdo->prepare("delete from vehicules where reg_no=:reg_no");
 		$stmt->execute(['reg_no'=>$oldreg]);
-
-		header("location: driver_vehicles.php?message=vehicule_deleted");
+		header("location: driverprofile.php?message=vehicule_deleted");
 		//deleting
 	}
 	else{
-		//header('location: editvehc.php?error=badinput');
+		header('location: editvehc.php?error=badinput');
 	}
 
 	

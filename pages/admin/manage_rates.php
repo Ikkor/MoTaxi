@@ -1,14 +1,32 @@
 <?php
 
-require ('../../modules/login_check.php');
+require ('LOGIN_CHECK.php');
 require ('../../includes/db_connect.php');
+
+$oldresult['rate']="";
+	$oldrate='select * from rate order by date desc limit 1';
+	$stmt=$pdo->prepare($oldrate);
+	$stmt->execute();
+	$oldresult = $stmt->fetch(PDO::FETCH_ASSOC);
+
+	if(isset($_POST['submit'])){
+		if(is_numeric($_POST['newrate']) && $_POST['newrate']!=""){
+			$email=$_SESSION['adminEmail'];
+			$null=NULL;
+			$sql='insert into rate values(:NULL, :rate, :who)';
+			$stmt=$pdo->prepare($sql);
+			$stmt->execute(['NULL'=>$null,'rate'=>$_POST['newrate'], 'who'=>$email]);
+		}
+	}
+?>
+
 
 ?>
 
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Driver: filing a complaint</title>
+    <title>Admin manage rates</title>
     <meta charset = "utf-8">
     <meta name = "viewport" content = "width=device-width, initial-scale=1">
     <!-- Font Awesome -->
@@ -20,13 +38,13 @@ require ('../../includes/db_connect.php');
 	<!-- Material Design Bootstrap -->
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
 
-   <link rel="stylesheet" type="text/css" href="../../css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.2.2/web-animations.min.js"></script>
 
-
+</style>
    
 	</head>
 
@@ -37,8 +55,8 @@ require ('../../includes/db_connect.php');
  <?php 
 
 
- $activemenu = "profile";
- include('includes/driver_navbar.php'); ?>
+ $activemenu = "rates";
+ include('includes/admin_navbar.php'); ?>
 
 
 
@@ -46,8 +64,8 @@ require ('../../includes/db_connect.php');
 <!-- SIDE NAV -->
 <div class="row" id="body-row" >
     <?php 
-    $activeside = 'rides';
-    include('includes/driver_side_navbar.php');
+    $activeside = 'rates';
+    include('includes/admin_side_navbar.php');
     ?>
 
 
@@ -59,60 +77,7 @@ require ('../../includes/db_connect.php');
 
 
  
-        <h1>Writing a complaint</h1>
-       
-        <a href = "driver_rides.php"><< Back</a>
-
-        <hr>
-       
-
-
-         <div class = "container">
-
-<form class="text-center border border-light p-5" action="writecomplaint.inc.php" method = "post">
-
-    <div class="form-col mb-4">
-
-           
-
-      <div class="col">
-            <div class="md-form">
-              <textarea required="required" id="txt_comment" class="md-textarea form-control" rows="6" name = "txt_comment" ></textarea>
-              <label for="txt_comment">Give us a brief description of what happened so that we can look into it: </label>
-            </div>
-          </div>
-
-          <!-- submit button -->
-    <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" name = "submit" value = "submit" style = "width:320px;" type="submit">Submit </button>
-  </div>
-      
-        
-
-
-<!--             <span class="error">echo the errors</span><br/>
- -->        
-       
-    
-  
-    
-    
-    
-<hr style="border-top: 8px solid #bbb;
-  border-radius: 5px;"> 
-
-    
-
-</div>
-
-   
-    
-    
-    
-
-   
-  
-</form>
-</div>
+        <h1>Manage rates</h1>
 
 
 <!-- CLIENT RIDES WRAPPER BELOW -->
@@ -121,14 +86,42 @@ require ('../../includes/db_connect.php');
 
 
 <div class = "wrapper" style = "display: flex;">
+	<form class="text-center border border-light p-5" action="writecomplaint.inc.php" action="<?php echo $_SERVER['PHP_SELF'];?>" method="POST">
+
+		<div class="form-col mb-4">
 
 
+<div class = "row edit">
+	<h5> Old Rates </h5>
+	<input type="text" class="form-control" name="oldrate" id="oldrate" value="<?php echo $oldresult['rate'] ?>" readonly>
+</div>
+
+
+<div class = "row edit">
+	<h5>New Rate</h5>
+	<input type="number" class="form-control" name="newrate" id="newrate">
+</div>
+
+	
+	<div class = "form group">
+	<button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit" name="submit" value="update">Update</button>
+</div>
+
+</div>
+
+</form>
+</div>
+
+
+<?php  
+		if(isset($_GET['message'])){
+			echo $_GET['message'];
+		}
+
+	?>
 
  
-    <!-- Mask & flexbox options-->
 
-</div>
-</div>
 
 
 

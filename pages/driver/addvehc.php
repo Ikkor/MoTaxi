@@ -77,7 +77,7 @@ require ('../../includes/db_connect.php');
 
       <div class="row edit">
             <h5>Vehicle registration plate</h5>
-            <input type="text" name = "txt_regno" id="txt_regno" class="form-control" placeholder="e.g ABC123">
+            <input required="required"  type="text" name = "txt_regno" id="txt_regno" class="form-control" placeholder="e.g ABC123">
       </div>        
 
    
@@ -110,19 +110,19 @@ require ('../../includes/db_connect.php');
 
       <div class="row edit">
               <h5>Number of seats </h5>
-                <input type="number" name = "txt_#seat" id="txt_#seat" class="form-control" Min=1 Max=30 placeholder="e.g 4">
+                <input required="required"type="number" name = "txt_#seat" id="txt_#seat" class="form-control" Min=1 Max=30 placeholder="e.g 4">
 
         </div>
 
         <div class="row edit">
           <h5>Model</h5>
-            <input type="text" name = "txt_model" id="txt_model" class="form-control" placeholder="e.g Honda Accord">
+            <input required="required"  type="text" name = "txt_model" id="txt_model" class="form-control" placeholder="e.g Honda Accord">
         </div>
 
 
         <div class="row edit">
           <h5>Year</h5>
-            <input type="number" Min = 2000 name = "txt_year" id="txt_year" class="form-control" placeholder="e.g 2009">
+            <input type="number" input required="required" type="number" Min = 2000 Max = '<?php echo date("Y"); ?>' name = "txt_year" id="txt_year" class="form-control" placeholder="e.g 2009">
         </div>
 
 
@@ -150,8 +150,8 @@ require ('../../includes/db_connect.php');
 
 
       <div class="row edit">
-        <h5>Boot Capacity</h5>
-        <input type="text" name = "txt_bootcap" id="txt_bootcap" class="form-control" placeholder="e.g 15.3 cu. ft. ">
+        <h5>Boot Capacity(Litres)</h5>
+        <input Min=100 required="required" type="text" name = "txt_bootcap" id="txt_bootcap" class="form-control" >
       </div>
 
 
@@ -164,7 +164,7 @@ require ('../../includes/db_connect.php');
     </div>
         <div class="form group">
             <p> Please ensure the image is properly lit. </p>
-            <input type="file" accept=".png, .jpeg, .jpg" name = "vehcimg" id="vehcimg" class="form-control" onchange="loadFile(event)" >
+            <input required="required" type="file" accept=".png, .jpeg, .jpg" name = "vehcimg" id="vehcimg" class="form-control" onchange="loadFile(event)" >
 
 
             <script>

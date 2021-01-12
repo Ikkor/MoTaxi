@@ -1,14 +1,14 @@
 <?php
-session_start();
-require ('../../modules/login_check.php');
-require ('../../includes/db_connect.php');
+
+require ('LOGIN_CHECK.php');
+
 
 ?>
 
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Client View Rides</title>
+    <title>Admin manage drivers complaints</title>
     <meta charset = "utf-8">
     <meta name = "viewport" content = "width=device-width, initial-scale=1">
     <!-- Font Awesome -->
@@ -20,13 +20,13 @@ require ('../../includes/db_connect.php');
 	<!-- Material Design Bootstrap -->
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
 
-   <link rel="stylesheet" type="text/css" href="../../css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.2.2/web-animations.min.js"></script>
 
-
+</style>
    
 	</head>
 
@@ -37,8 +37,8 @@ require ('../../includes/db_connect.php');
  <?php 
 
 
- $activemenu = "profile";
- include('includes/client_navbar.php'); ?>
+ $activemenu = "drivers";
+ include('includes/hr_navbar.php'); ?>
 
 
 
@@ -46,8 +46,8 @@ require ('../../includes/db_connect.php');
 <!-- SIDE NAV -->
 <div class="row" id="body-row" >
     <?php 
-    $activeside = 'rides';
-    include('includes/client_side_navbar.php');
+    $activeside = 'resolved';
+    include('includes/hr_side_navbar.php');
     ?>
 
 
@@ -59,67 +59,7 @@ require ('../../includes/db_connect.php');
 
 
  
-        <h1>Writing a complaint</h1>
-       
-        <a href = "client_rides.php"><< Back</a>
-
-        <hr>
-       
-
-
-         <div class = "container">
-
-<form class="text-center border border-light p-5" action="writecomplaint.inc.php?driverId=<?php echo $_GET['driverId']?>" method = "post">
-
-    <div class="form-col mb-4">
-
-      <div class="row">
-            <label for = "txt_type">What would you like to complaint about?</label>
-            <select required="required" class = "browser-default custom-select" name ="txt_type" id="txt_type">
-              <option value="hygiene">hygiene</option>
-              <option value="treatment">treatment</option>
-              <option value="other" selected>other</option>
-            </select>
-      </div>        
-
-      <div class="col">
-            <div class="md-form">
-              <textarea required="required"style= id="form10" class="md-textarea form-control" rows="6" name = "txt_desc" ></textarea>
-              <label for="txt_desc">Give us more details: </label>
-            </div>
-          </div>
-
-          <!-- submit button -->
-    <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" name = "submit" value = "submit" style = "width:320px;" type="submit">Submit </button>
-  </div>
-      
-        
-
-
-<!--             <span class="error">echo the errors</span><br/>
- -->        
-       
-    
-  
-    
-    
-    
-<hr style="border-top: 8px solid #bbb;
-  border-radius: 5px;"> 
-
-    
-
-</div>
-
-   
-    
-    
-    
-
-   
-  
-</form>
-</div>
+        <h1>Resolved complaints: Drivers v/s Clients</h1>
 
 
 <!-- CLIENT RIDES WRAPPER BELOW -->
@@ -129,13 +69,72 @@ require ('../../includes/db_connect.php');
 
 <div class = "wrapper" style = "display: flex;">
 
+<table class="table">
+  <thead>
+    <tr>
 
+      <th scope="col">Complaint ID</th>
+      <th scope="col">driver_id</th>
+      <th scope='col>'>driver email</th>
+      <th scope="col">user_id</th>
+      <th scope="col">comments</th>
+      <th scope="col">date</th>
+      <th scope="col">location</th>
+      <th scope="col">status</th>
+      <th scope="col"></th>
+      
+
+      
+    </tr>
+  </thead>
+  <tbody>
+<?php 
+			
+			$id=$_SESSION['id'];
+			// $name=$_SESSION['name'];
+			// $email=$_SESSION['email'];
+			// $utype=$_SESSION['utype'];
+
+			//fetch all vehicules pertaining to that driver
+
+			require '../../includes/db_connect.php';
+			$stmt=$pdo->prepare('select * from driver_complaints inner join user on id=driver_id where status="Resolved" order by date');
+			$stmt->execute();
+			$details = $stmt->fetchAll(PDO::FETCH_ASSOC);
+			
+			foreach($details as $row){
+				
+				echo 
+				"<tr
+				<td></td>
+				<td>".$row['complaint_id']."</td>
+				<td>".$row['driver_id']."</td>
+				<td>".$row['email']."</td>
+				<td>".$row['user_id']."</td>
+				<td>".$row['comments']."</td>
+				<td>".$row['date']."</td>
+				<td>".$row['location']."</td>
+				<td>".$row['status']."</td>
+				</tr>";
+
+			
+
+
+			}	
+
+ 		?>
+
+  </tbody>
+</table>
+<?php  
+		// if(isset($_GET['message'])){
+		// 	echo $_GET['message'];
+		// }
+
+	?>
 
  
-    <!-- Mask & flexbox options-->
 
-</div>
-</div>
 
 
 
