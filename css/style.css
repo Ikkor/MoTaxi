@@ -360,6 +360,11 @@ footer {
   background-color: #121212 !important;
   border-color:#121212 !important;
 }
+a.bg-dark.list-group-item.list-group-item-action.bg-dark.sub.text-white.active{
+  background-color:#ffa5005e !important;
+}
+
+
 a.bg-dark.list-group-item:hover{
   background-color: #ffa500 !important;
   color: white !important;

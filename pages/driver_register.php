@@ -174,7 +174,7 @@ if(isset($_GET['ref'])){
 
     <label  for="txt_address">Your address: </label>
     <span class="error">* <?php echo $addressErr ?></span>
-    <input required="required" pattern="[A-Za-z0-9]+" type="text" 
+    <input required="required"  type="text" 
          class="form-control mb-4" 
          id="txt_address" 
          placeholder="e.g  queen elizabeth II avenue, place d'armes"

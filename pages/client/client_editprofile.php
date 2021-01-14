@@ -180,7 +180,7 @@ $txt_nameErr=$txt_passErr=$txt_passErr=$txt_districtErr=$txt_addressErr=$txt_pho
 
 <div class="row" id="body-row" >
     <?php 
-    $activeside = 'profile';
+    $activeside = 'eprofile';
     include('includes/client_side_navbar.php');
     ?>
     
@@ -204,7 +204,7 @@ $txt_nameErr=$txt_passErr=$txt_passErr=$txt_districtErr=$txt_addressErr=$txt_pho
 <div class = "wrapper" style = "display: flex;">
 
 
-    <div class = "text-center border border-light p-5 left form" style="width: 40%;">
+    <div class = "text-center border border-light p-5 left form" style="width: 60%;">
 
 
 

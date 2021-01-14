@@ -9,7 +9,7 @@
             </li>
             <!-- /END Separator -->
             <!-- Menu with submenu -->
-              <a data-toggle="collapse" aria-expanded = "false" href="#submenu1" <?php if($activeside=='profile'){ echo 'class="bg-dark list-group-item list-group-item-action active"';} else { echo'class="bg-dark list-group-item list-group-item-action"';}?>>
+              <a data-toggle="collapse" aria-expanded = "false" href="#submenu1" <?php if($activeside=='vprofile' || $activeside=="eprofile"){ echo 'class="bg-dark list-group-item list-group-item-action active"';} else { echo'class="bg-dark list-group-item list-group-item-action"';}?>>
                 <div class="d-flex w-100 justify-content-start align-items-center">
                     <span class="fa fa-user fa-fw mr-3"></span>
                     <span class="menu-collapsed">My Profile</span>
@@ -19,10 +19,10 @@
 
         <!-- Submenu content -->
             <div id="submenu1" class="collapse sidebar-submenu">
-                <a href="client_viewprofile.php" class="list-group-item list-group-item-action bg-dark sub text-white">
+                <a href="client_viewprofile.php" <?php if($activeside=='vprofile'){ echo 'class="bg-dark list-group-item list-group-item-action bg-dark sub text-white active"';} else { echo'class="bg-dark list-group-item list-group-item-action bg-dark sub text-white"';}?>>
                     <span class="menu-collapsed">View Profile</span>
                 </a>
-                <a href="client_editprofile.php" class="list-group-item list-group-item-action bg-dark sub text-white">
+                <a href="client_editprofile.php" <?php if($activeside=='eprofile'){ echo 'class="bg-dark list-group-item list-group-item-action bg-dark sub text-white active"';} else { echo'class="bg-dark list-group-item list-group-item-action bg-dark sub text-white"';}?>>
                     <span class="menu-collapsed">Edit Profile</span>
                 </a>
                

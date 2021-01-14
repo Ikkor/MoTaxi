@@ -241,7 +241,7 @@ $txt_nameErr=$txt_passErr=$txt_passErr=$txt_districtErr=$txt_addressErr=$txt_pic
 
 <div class="row" id="body-row" >
     <?php 
-    $activeside = 'profile';
+    $activeside = 'eprofile';
     include('includes/driver_side_navbar.php');
     ?>
     
