@@ -318,6 +318,7 @@ $txt_nameErr=$txt_passErr=$txt_passErr=$txt_districtErr=$txt_addressErr=$txt_pic
     <option value = "plaine wilhems">Plaine Wilhems</option>
     <option value = "riviere du rempart">Riviere du Rempart</option>
     <option value = "moka">Moka</option>
+    <option value = "black river">Black River</option>
     <option value = "savanne">Savanne</option>
 
     
