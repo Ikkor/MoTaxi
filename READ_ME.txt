@@ -26,4 +26,4 @@ http://localhost/motaxi/pages/admin/admin_register.php
 
 [hrman]
 http://localhost/motaxi/pages/hr/hr_login.php
-http://localhost/motaxi/pages/hr/register_login.php
+http://localhost/motaxi/pages/hr/hr_register.php
