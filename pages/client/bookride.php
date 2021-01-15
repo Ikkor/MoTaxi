@@ -1,4 +1,7 @@
-<?php require('../../modules/login_check.php'); ?>
+<?php 
+    require('../../modules/login_check.php');
+    require 'includes/utypecheck.php';
+ ?>
 
 <!-- T H I S   P A G E   I S    A   P R T O  Y P E   -->
 <!doctype html>

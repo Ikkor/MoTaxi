@@ -2,6 +2,7 @@
 require('../../modules/login_check.php');
 require('../../includes/db_connect.php');
 require('../../modules/inputsanitizer.php');
+    require ('includes/utypecheck.php');
 
 // errors
 $txt_nameErr=$txt_passErr=$txt_passErr=$txt_districtErr=$txt_addressErr=$txt_picErr=$txt_phoneErr=$txt_npwdErr='';

@@ -3,6 +3,7 @@
 	require '../../modules/login_check.php';//incldue session start
 	require '../../includes/db_connect.php';
 	require '../../modules/inputsanitizer.php';
+	require ('includes/utypecheck.php');
 
 	sanitizeInput();
 	//grap values

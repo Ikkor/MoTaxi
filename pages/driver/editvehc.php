@@ -2,6 +2,7 @@
 
 require ('../../modules/login_check.php');
 require ('../../includes/db_connect.php');
+  require ('includes/utypecheck.php');
 
 
 	/*
@@ -131,7 +132,7 @@ require ('../../includes/db_connect.php');
 		
  		<div class="row edit">
           <h5>Year</h5>
-            <input required="required" type="number" Min = 2000 Max = '<?php echo date("Y"); ?>' name = "txt_year" id="txt_year" class="form-control" value="<?php echo $check['year']?>">
+            <input required="required" type="number" Min = 1900 Max = '<?php echo date("Y"); ?>' name = "txt_year" id="txt_year" class="form-control" value="<?php echo $check['year']?>">
         </div>
 
 

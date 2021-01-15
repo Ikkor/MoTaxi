@@ -20,7 +20,7 @@
       <?php if($_SESSION['utype']=='driver'){ ?>
 
     	<hr>
-      <li><a href = '../pages/driver/driver_profile.php'> View/Edit my profile </a></li>
+      <li><a href = '../pages/driver/driver_viewprofile.php'> View/Edit my profile </a></li>
       <hr>
       <li><a href = '../pages/driver/driver_vehicles.php'> View my vehicles </a></li>
       <hr>
@@ -30,7 +30,7 @@
     <?php } else { ?>
 
       <hr>
-      <li><a href = '../pages/client/client_profile.php'> View/Edit my profile </a></li>
+      <li><a href = '../pages/client/client_viewprofile.php'> View/Edit my profile </a></li>
       <hr>
       <li><a href = '../pages/client/bookride.php'> Book a ride </a></li>
       <hr>

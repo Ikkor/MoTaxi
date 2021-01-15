@@ -2,7 +2,8 @@
 
 require ('../../modules/login_check.php');
 require ('../../includes/db_connect.php');
-
+require ('includes/utypecheck.php');
+$_SESSION['rideInQuestion']=$_GET['rideInQuestion'];
 ?>
 
 <!DOCTYPE html>

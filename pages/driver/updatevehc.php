@@ -2,6 +2,7 @@
 	require ('../../modules/login_check.php');
 	require ('../../includes/db_connect.php');
 	require ('../../modules/inputsanitizer.php');
+	require ('includes/utypecheck.php');
 
 	sanitizeInput();
 	$oldreg=$_SESSION['old_reg_no'];

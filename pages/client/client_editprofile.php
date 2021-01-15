@@ -2,6 +2,8 @@
 require('../../modules/login_check.php');
 require('../../includes/db_connect.php');
 require('../../modules/inputsanitizer.php');
+require 'includes/utypecheck.php';
+
 
 // errors
 $txt_nameErr=$txt_passErr=$txt_passErr=$txt_districtErr=$txt_addressErr=$txt_phoneErr=$txt_npwdErr='';
@@ -104,7 +106,7 @@ $txt_nameErr=$txt_passErr=$txt_passErr=$txt_districtErr=$txt_addressErr=$txt_pho
 
             
 
-            header("location: driver_editprofile.php?message=success");
+            header("location: client_editprofile.php?message=success");
 
         }
     }
@@ -116,15 +118,13 @@ $txt_nameErr=$txt_passErr=$txt_passErr=$txt_districtErr=$txt_addressErr=$txt_pho
         }
         if($opwdE==0){
 
-            $sql="delete from user where id=:id";
+			$sql="update user set active=:value where id=:id";
+			$value=0;
+			$stmt=$pdo->prepare($sql);
 
-            // "delete user, driver_details from user inner join driver_details on user.id=driver_details.driverId where user.id=:id" this one deletes in both table
+			$stmt->execute(['value'=>$value, 'id'=>$id]);
 
-            $stmt=$pdo->prepare($sql);
-
-            $stmt->execute(['id'=>$id]);
-
-            header("location: ../../logout.php");
+            header("location: ../logout.php");
         }
     }
     

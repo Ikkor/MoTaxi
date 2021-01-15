@@ -1,0 +1,37 @@
+15 jan 2021
+1. edited client_editprofile
+line 107 header("location: driver_editprofile.php?message=success"); to header("location: client_editprofile.php?message=success");
+
+2. you must change: on client_editprofile.php updated form data must persist upon wrong submit
+
+3. line 127 client_editprofile
+changed header("location: ../../logout.php"); to header("location: ../logout.php");
+
+4. edited logout.php
+added line 6 unset($_SESSION['id']);
+
+5. edited client_editprofile
+line 117
+
+6. added file driver/includes/utypecheck to prevent client to access driver page and vice-versa
+require in each and every driver pages
+
+7. added file client/includes/utypecheck to prevent client to access driver page and vice-versa
+require in each and every driver pages
+
+8.you must change:  change min year of vehc in addin new car
+
+9.you must change:  is crop and center possible when displaying images
+
+10. something not working with driver_rides will send new file
+edited driver_rides and writecomplaint.inc
+
+11. client complaints had same problem fixed
+
+12. you must change: when have 2 vehicle or more edit vehicle (editvehc) form always shows image of last vehicle in list
+
+13. added ride_id int after client complaints table
+changes already made to accomodate
+
+14. added vehc matriculation (vehicle varchar 255) in ride table last field
+will be accomodated when ride is implemented later (sem 2?)

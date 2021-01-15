@@ -1,7 +1,8 @@
 <?php
-session_start();
 require ('../../modules/login_check.php');
 require ('../../includes/db_connect.php');
+require 'includes/utypecheck.php';
+$_SESSION['rideInQuestion']=$_GET['rideInQuestion'];
 
 ?>
 
@@ -69,7 +70,7 @@ require ('../../includes/db_connect.php');
 
          <div class = "container">
 
-<form class="text-center border border-light p-5" action="writecomplaint.inc.php?driverId=<?php echo $_GET['driverId']?>" method = "post">
+<form class="text-center border border-light p-5" action="writecomplaint.inc.php" method = "post">
 
     <div class="form-col mb-4">
 
