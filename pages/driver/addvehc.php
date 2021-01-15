@@ -152,8 +152,10 @@ require ('../../includes/db_connect.php');
 
       <div class="row edit">
         <h5>Boot Capacity(Litres)</h5>
-        <input Min=100 required="required" type="text" name = "txt_bootcap" id="txt_bootcap" class="form-control" >
+        <input Min=100 required="required" type="number" name = "txt_bootcap" id="txt_bootcap" class="form-control" >
       </div>
+
+
 
 
       <div class="form group">
