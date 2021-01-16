@@ -2,7 +2,7 @@
 require('../../modules/login_check.php');
 require('../../includes/db_connect.php');
 require('../../modules/inputsanitizer.php');
-    require ('includes/utypecheck.php');
+require ('includes/utypecheck.php');
 
 // errors
 $txt_nameErr=$txt_passErr=$txt_passErr=$txt_districtErr=$txt_addressErr=$txt_picErr=$txt_phoneErr=$txt_npwdErr='';
@@ -274,7 +274,7 @@ $txt_nameErr=$txt_passErr=$txt_passErr=$txt_districtErr=$txt_addressErr=$txt_pic
         <div class="row edit">
             <!-- First name -->
             <h4>Name: </h4>
-            <input type="text" name = "txt_name" id="txt_name" class="form-control" value ="<?php echo $check['name'];?>">
+            <input type="text" name = "txt_name" id="txt_name" class="form-control" value ="<?php if(isset($name)) echo $name; else echo $check['name'];?>">
 
             <span class="error"><?php echo $txt_nameErr ?></span><br/>
         </div>
@@ -292,14 +292,14 @@ $txt_nameErr=$txt_passErr=$txt_passErr=$txt_districtErr=$txt_addressErr=$txt_pic
 
  <div class = "row edit">
     <h4>Phone Number: </h4>
-     <input type="text" name = "txt_phone" id="txt_phone" class="form-control" value ="<?php echo $check['phone'];?>">
+     <input type="text" name = "txt_phone" id="txt_phone" class="form-control" value ="<?php if(isset($phone))echo $phone; else echo $check['phone'];?>">
             <span class="error"><?php echo $txt_phoneErr ?></span><br/>
 
  </div>
 
  <div class = "row edit">
     <h4>Address: </h4>
-     <input type="text" name = "txt_address" id="txt_address" class="form-control" value ="<?php echo $check['address'];?>">
+     <input type="text" name = "txt_address" id="txt_address" class="form-control" value ="<?php if(isset($addr))echo $addr; else echo $check['address'];?>">
             <span class="error"><?php echo $txt_addressErr ?></span><br/>
 
 </div>
@@ -310,7 +310,7 @@ $txt_nameErr=$txt_passErr=$txt_passErr=$txt_districtErr=$txt_addressErr=$txt_pic
     <h4> District: </h4>
     <span class="error"> <?php echo $txt_districtErr ?></span>    
     <select class = "browser-default custom-select" name="txt_district" id="txt_district">
-    <option value ='<?php echo $check['district']?>'><?php echo $check['district']?></option>
+    <option value ='<?php if(isset($district))echo $district; else echo $check['district']?>'><?php if(isset($district))echo $district; else echo $check['district']?></option>
     <option value ="port louis">Port-Louis</option>
     <option value ="grand port">Grand-Port</option>
     <option value ="flacq">Flacq</option>

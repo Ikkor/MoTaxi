@@ -212,7 +212,7 @@ $txt_nameErr=$txt_passErr=$txt_passErr=$txt_districtErr=$txt_addressErr=$txt_pho
         <div class="row edit">
             <!-- First name -->
             <h4>Name: </h4>
-            <input type="text" name = "txt_name" id="txt_name" class="form-control" value ="<?php echo $check['name'];?>">
+            <input type="text" name = "txt_name" id="txt_name" class="form-control" value ="<?php if(isset($name)) echo $name; else echo $check['name'];?>">
 
             <span class="error"><?php echo $txt_nameErr ?></span><br/>
         </div>
@@ -237,7 +237,7 @@ $txt_nameErr=$txt_passErr=$txt_passErr=$txt_districtErr=$txt_addressErr=$txt_pho
 
  <div class = "row edit">
     <h4>Address: </h4>
-     <input type="text" name = "txt_address" id="txt_address" class="form-control" value ="<?php echo $check['address'];?>">
+     <input type="text" name = "txt_address" id="txt_address" class="form-control" value ="<?php if(isset($addr))echo $addr; else echo $check['address'];?>">
             <span class="error"><?php echo $txt_addressErr ?></span><br/>
 
 </div>
@@ -248,7 +248,7 @@ $txt_nameErr=$txt_passErr=$txt_passErr=$txt_districtErr=$txt_addressErr=$txt_pho
     <h4> District: </h4>
     <span class="error"> <?php echo $txt_districtErr ?></span>    
     <select class = "browser-default custom-select" name="txt_district" id="txt_district">
-    <option value ='<?php echo $check['district']?>'><?php echo $check['district']?></option>
+    <option value ='<?php if(isset($district))echo $district; else echo $check['district']?>'><?php if(isset($district))echo $district; else echo $check['district']?></option>
     <option value ="port louis">Port-Louis</option>
     <option value ="grand port">Grand-Port</option>
     <option value ="flacq">Flacq</option>
