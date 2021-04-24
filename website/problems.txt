@@ -1,6 +1,0 @@
-check if duplicate mail at acc creation (=>add unique in db)
-close $pdo
-add transaction 
-check for duplicate reg_no at insert and update (=>add unique in db)
-add checks for empty "" after trim for form variables
-put checks in function 
