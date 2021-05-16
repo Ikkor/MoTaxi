@@ -1,4 +1,29 @@
 <!-- Sidebar -->
+
+
+<script>
+    //code below will update the msg fav-icon 
+        $(document).ready(function(){
+            count_unread_message();
+
+            setInterval(function(){
+                count_unread_message();
+            }, 5000);
+            
+            function count_unread_message(){
+                $.ajax({
+                    url: "../../modules/count_unseen_message.php",
+                    method: "POST",
+                    success:function(data){
+                        $('#msgcnt').html(data);
+                        // alert(data);
+                    }
+                })
+            }
+        });
+
+    </script>
+
     <div id="sidebar-container" class="sidebar-expanded d-none d-md-block col-2">
 
         <!-- d-* hiddens the Sidebar in smaller devices. Its itens can be kept on the Navbar 'Menu' -->
@@ -59,10 +84,16 @@
             </div>
          
            
-            
+            <a href="hr_inbox.php" <?php if($activeside=='inbox'){ echo 'class="bg-dark list-group-item list-group-item-action active"';} else { echo'class="bg-dark list-group-item list-group-item-action"';}?>>
+                <div class="d-flex w-100 justify-content-start align-items-center">
+                    <span class="fa fa-envelope fa-fw mr-3"></span>
+                    <span class="menu-collapsed">Messages 
+                    <span  id = "msgcnt" class="badge badge-pill badge-primary ml-2">0</span></span>
+                </div>
+            </a>
           
            
-          
+     
            <a href="logout.php" class="bg-dark list-group-item list-group-item-action">
                 <div class="d-flex w-100 justify-content-start align-items-center">
                     <span class="fa fa-power-off fa-fw mr-3"></span>

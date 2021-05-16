@@ -1,5 +1,5 @@
 
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
+<nav id="navbar" class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
     <div class="container">
       <a class= "navbar-brand"  href="index.php">
       	<i class="fas fa-taxi"></i>

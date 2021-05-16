@@ -1,4 +1,8 @@
-4/24/2021
+5/16/2021
+-added hr inbox with chat, it displays the latest message from user
+-chat_system.js can be used on any page 
+-need to make inbox for user as well
+-need to make unread message bold 4/24/2021
 -pushed to git to make sure its latest version
 ------------
 [END OF 1ST DEMO]

@@ -28,8 +28,8 @@ header,
 
 @media (min-width: 600px){
 .navbar.scrolling-navbar {
-    padding-top: 4px;
-    padding-bottom: 4px;
+    padding-top: 0.10px;
+    padding-bottom: 0.10px;
   }
 }
 
@@ -44,6 +44,8 @@ header,
   }
 
   .navbar-brand{
+    position: absolute !important;
+    left:0 !important;
     float:left !important;
     
 
@@ -58,7 +60,7 @@ header,
 }
 
 .btn .fa {
-  margin-left: 3px;
+  margin-left: 31px;
 }
 
 /*navbar below */
@@ -84,6 +86,7 @@ strong.taxi{
 }
 
 .nav-item{
+
   border-radius: 3px;
   margin-right:30px;
   padding-right:20px;
@@ -118,9 +121,9 @@ strong.taxi{
 
 
 .top-nav-collapse {
-  backdrop-filter: blur(10px);
+  /*backdrop-filter: blur(10px);*/
   background: rgba(12,12,12,0.7);
-
+  
 }
 
 .navbar:not(.top-nav-collapse) {

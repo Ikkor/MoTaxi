@@ -1,4 +1,12 @@
+
+16 May 2021
+-added hr inbox with chat, it displays the latest message from user
+-chat_system.js can be used on any page 
+-need to make inbox for user as well
+-need to make unread message bold 
+
 15 jan 2021
+
 1. edited client_editprofile
 line 107 header("location: driver_editprofile.php?message=success"); to header("location: client_editprofile.php?message=success");
 

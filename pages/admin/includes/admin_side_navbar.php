@@ -34,6 +34,9 @@
             </a>
            
             
+
+ 
+
             <!-- /END Separator -->
             <a href="manage_rates.php" <?php if($activeside=='rates'){ echo 'class="bg-dark list-group-item list-group-item-action active"';} else { echo'class="bg-dark list-group-item list-group-item-action"';}?>>
                 <div class="d-flex w-100 justify-content-start align-items-center">
@@ -42,7 +45,8 @@
                 </div>
             </a>
             
-           
+    
+
           
            <a href="logout.php" class="bg-dark list-group-item list-group-item-action">
                 <div class="d-flex w-100 justify-content-start align-items-center">
@@ -50,6 +54,8 @@
                     <span class="menu-collapsed">Log Out</span>
                 </div>
             </a>
+
+          
 
 
             <!-- Logo -->

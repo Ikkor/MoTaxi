@@ -214,9 +214,7 @@ $ErrMsg = '';
   </div>
 </main>
 -->
-<footer>
-<p>Copyright © 2020 MoTaxi Ltd. All Rights Reserved.</p>
-</footer>
+<?php include ("../includes/footer.php"); ?>
 
 <!--Main Layout-->
 
