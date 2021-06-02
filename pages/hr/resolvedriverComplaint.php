@@ -6,7 +6,8 @@
 	$stmt=$pdo->prepare('update driver_complaints set status=:resolved where complaint_id=:complaint_id');
 	$stmt->execute(['resolved'=>'resolved', 'complaint_id'=>$complaint_id]);
 
-
+$output = "Resolved!";
+	echo $output;
 	//header("location: drivers_complaints.php?message=SuccesfullResolve");
 
 ?>

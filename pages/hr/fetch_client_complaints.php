@@ -12,7 +12,7 @@
 //fetch_client_complaints.php
 
 //require ('../../includes/db_connect.php');
-include('../../modules/chat_connection.php');
+include('chat_modules/chat_connection.php');
 
 session_start();
 

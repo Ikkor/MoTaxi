@@ -47,6 +47,58 @@ $_SESSION['user_id'] = $_SESSION['hrnEmail'];
     <script type = "text/javascript" src ="chat_system.js">
     </script>
 
+    <script>
+
+        $(document).ready(function(){
+
+    
+            fetch_client_complaints();
+
+            setInterval(function(){
+                fetch_client_complaints();
+            }, 15000);
+
+
+        $(document).on('click','.resolvebtn',function(){
+                        var comp_id = $(this).attr('data');
+                        $.ajax({
+                            url:"resolveclientComplaint.php",
+                            method:"POST",
+                            data:{
+                                complaint_id:comp_id
+                            },
+                            success:function(data)
+                            {
+                                $(this).html(data) //need a way to prevent accidental resolve
+                                fetch_client_complaints();
+                                
+
+                            }
+                        })
+                    });
+
+
+
+
+        function fetch_client_complaints(){
+                $.ajax({
+                    url:"fetch_client_complaints.php",
+                    method:"POST",
+                    success:function(data){
+                        $('#complaints').html(data);
+                    }
+                })
+            }
+
+       
+
+
+        
+ });
+
+
+        </script>
+
 </style>
    
 	</head>

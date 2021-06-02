@@ -117,21 +117,23 @@ strong.taxi{
 }
 
 
-.top-nav-collapse {/*
+.top-nav-collapse {
+
+/*
   backdrop-filter: blur(70px);*/
   background: rgba(12,12,12,1);
 
 }
 
 .navbar:not(.top-nav-collapse) {
-  background: rgba(100,100,100,0);
+  background: rgba(100,100,100,0.7);
   box-shadow: 0px 0px !important;
   /*backdrop-filter: blur(10px);*/
 }
 
 @media (max-width: 991px) {
   .navbar:not(.top-nav-collapse) {
-     background: rgba(100,100,100,0);
+     background: rgba(100,100,100,0.7);
      box-shadow: 0px 0px !important;
      /*backdrop-filter: blur(10px);*/
 

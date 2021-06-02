@@ -2,13 +2,16 @@
 
 require ('LOGIN_CHECK.php');
 
+$_SESSION['user_id'] = $_SESSION['hrnEmail'];
+  
 
+//remove when hr has id
 ?>
 
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Admin manage drivers complaints</title>
+    <title>HR manage driver complaints</title>
     <meta charset = "utf-8">
     <meta name = "viewport" content = "width=device-width, initial-scale=1">
     <!-- Font Awesome -->
@@ -19,12 +22,80 @@ require ('LOGIN_CHECK.php');
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
 	<!-- Material Design Bootstrap -->
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
-
+ 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.2.2/web-animations.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+	<!-- Bootstrap tooltips -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+	<!-- Bootstrap core JavaScript -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+	<!-- MDB core JavaScript -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+
+	<script type ="text/javascript" src="../../javascript/main.js"></script>
+
+	<!-- this adds emoji box -->
+	 <script src="https://cdn.rawgit.com/mervick/emojionearea/master/dist/emojionearea.min.js"></script>
+
+    <script type = "text/javascript" src ="chat_system.js">
+    </script>
+
+     <script>
+
+        $(document).ready(function(){
+
+    
+            fetch_driver_complaints();
+
+            setInterval(function(){
+                fetch_driver_complaints();
+            }, 15000);
+
+
+        $(document).on('click','.resolvebtn',function(){
+                    var comp_id = $(this).attr('data');
+                    $.ajax({
+                        url:"resolvedriverComplaint.php",
+                        method:"POST",
+                        data:{
+                            complaint_id:comp_id
+                        },
+                        success:function(data)
+                        {
+                            $(this).html(data) //need a way to prevent accidental resolve
+                            fetch_driver_complaints();
+                            
+
+                        }
+                    })
+                });
+
+
+
+
+
+        function fetch_driver_complaints(){
+                $.ajax({
+                    url:"fetch_driver_complaints.php",
+                    method:"POST",
+                    success:function(data){
+                        $('#complaints').html(data);
+                    }
+                })
+            }
+
+        });
+
+        </script>
+
+
 
 </style>
    
@@ -32,7 +103,7 @@ require ('LOGIN_CHECK.php');
 
 <body>
 <!-- Main navigation -->
-
+<div id = "chatbox"></div>
   <!-- top Navbar-->
  <?php 
 
@@ -59,96 +130,27 @@ require ('LOGIN_CHECK.php');
 
 
  
-        <h1>New complaints: Drivers v/s Clients</h1>
+        <h1>New complaints: Driver v/s Clients</h1>
 
 
-<!-- CLIENT RIDES WRAPPER BELOW -->
+<!-- CLIENT COMPLAINTS WRAPPER BELOW -->
+
+
+
+<!-- generate complaints inside -->
+<div id = "complaints" class = "wrapper" style = " display: flex;">
 
 
 
 
-<div class = "wrapper" style = "display: flex;">
-
-<table class="table">
-  <thead>
-    <tr>
-
-      <th scope="col">Complaint ID</th>
-      <th scope="col">driver_id</th>
-      <th scope='col>'>driver email</th>
-      <th scope="col">user_id</th>
-      <th scope="col">comments</th>
-      <th scope="col">date</th>
-      <th scope="col">location</th>
-      <th scope="col">status</th>
-      <th scope="col">action</th>
-      <th scope="col"></th>
-      
-
-      
-    </tr>
-  </thead>
-  <tbody>
-<?php 
-			
-			$id=$_SESSION['id'];
-			// $name=$_SESSION['name'];
-			// $email=$_SESSION['email'];
-			// $utype=$_SESSION['utype'];
-
-			//fetch all vehicules pertaining to that driver
-
-			require '../../includes/db_connect.php';
-			$stmt=$pdo->prepare('select * from driver_complaints inner join user on id=driver_id where status="notResolved" order by date');
-			$stmt->execute();
-			$details = $stmt->fetchAll(PDO::FETCH_ASSOC);
-			
-			foreach($details as $row){
-				
-				echo 
-				"<tr
-				<td></td>
-				<td>".$row['complaint_id']."</td>
-				<td>".$row['driver_id']."</td>
-				<td>".$row['email']."</td>
-				<td>".$row['user_id']."</td>
-				<td>".$row['comments']."</td>
-				<td>".$row['date']."</td>
-				<td>".$row['location']."</td>
-				<td>".$row['status']."</td>
-				<td>"."<a style = 'color:green;' href='resolvedriverComplaint.php?id=".$row['complaint_id']."'>Change to resolved</a></td>
-				</tr>";
-
-			
+ </div>
 
 
-			}	
+</div>
 
- 		?>
 
-  </tbody>
-</table>
-<?php  
-		// if(isset($_GET['message'])){
-		// 	echo $_GET['message'];
-		// }
-
-	?>
 
  
-
-
-
-
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<!-- Bootstrap tooltips -->
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
-	<!-- Bootstrap core JavaScript -->
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
-	<!-- MDB core JavaScript -->
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
-
-	<script type ="text/javascript" src="../../javascript/main.js"></script>
 
     </body>
 </html>

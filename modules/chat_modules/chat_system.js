@@ -1,17 +1,13 @@
 $(document).ready(function(){
 
     
-    		
-
-    		
 
     		setInterval(function(){
-    			  update_chat_history_data();
+    			 update_chat_history_data();
     		}, 15000);
 //fetch new complaints every 15 secs
 
-    		
-
+    	
 
 			function make_chat_dialog_box(to_user_id, to_user_name)
 			{
@@ -48,17 +44,11 @@ $(document).ready(function(){
  			});
 
 
-			//resolve client complaint
-
-
- 			
-
-
  			 $(document).on('click', '.send_chat', function(){
 				var to_user_id = $(this).attr('id');
 				var chat_message = $('#chat_message_'+to_user_id).val();
 				$.ajax({
-				url:"chat_modules/insert_chat.php",
+				url:"../../modules/chat_modules/insert_chat.php",
 				method:"POST",
 				data:{to_user_id:to_user_id, chat_message:chat_message},
 				success:function(data)
@@ -77,7 +67,7 @@ $(document).ready(function(){
 			 function fetch_user_chat_history(to_user_id)
 			 {
 			  $.ajax({
-			   url:"chat_modules/fetch_user_chat_history.php",
+			   url:"../../modules/chat_modules/fetch_user_chat_history.php",
 			   method:"POST",
 			   data:{to_user_id:to_user_id},
 			   success:function(data){

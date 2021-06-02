@@ -12,7 +12,7 @@
             
             function count_unread_message(){
                 $.ajax({
-                    url: "../../modules/count_unseen_message.php",
+                    url: "chat_modules/count_unseen_message.php",
                     method: "POST",
                     success:function(data){
                         $('#msgcnt').html(data);

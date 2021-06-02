@@ -1,3 +1,27 @@
+<script>
+    //code below will update the msg fav-icon 
+        $(document).ready(function(){
+            count_unread_message();
+
+            setInterval(function(){
+                count_unread_message();
+            }, 5000);
+            
+            function count_unread_message(){
+                $.ajax({
+                    url: "../../modules/chat_modules/count_unseen_message.php",
+                    method: "POST",
+                    success:function(data){
+                        $('#msgcnt').html(data);
+                        // alert(data);
+                    }
+                })
+            }
+        });
+
+    </script>
+
+
 <!-- Sidebar -->
     <div id="sidebar-container" class="sidebar-expanded d-none d-md-block col-2">
 
@@ -43,10 +67,11 @@
                     <span class="menu-collapsed">coming soon</span>
                 </div>
             </a>
-            <a href="#" class="bg-dark list-group-item list-group-item-action">
+             <a href="client_inbox.php" <?php if($activeside=='inbox'){ echo 'class="bg-dark list-group-item list-group-item-action active"';} else { echo'class="bg-dark list-group-item list-group-item-action"';}?>>
                 <div class="d-flex w-100 justify-content-start align-items-center">
                     <span class="fa fa-envelope fa-fw mr-3"></span>
-                    <span class="menu-collapsed">Messages <span class="badge badge-pill badge-primary ml-2">5</span></span>
+                    <span class="menu-collapsed">Messages 
+                    <span  id = "msgcnt" class="badge badge-pill badge-primary ml-2">0</span></span>
                 </div>
             </a>
             <!-- Separator without title -->
