@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "http://api.example.com/ownerhouses.json#",
+  "type": "array",
+  "items": [
+    {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "vehicules": {
+          "type": "array",
+          "items": [
+            {
+              "type": "object",
+              "properties": {
+                "reg_no": {
+                  "type": "string"
+                },
+                "s_type": {
+                  "type": "string"
+                },
+                "seat": {
+                  "type": "integer"
+                },
+                "model_name": {
+                  "type": "string"
+                },
+                "boot_capacity": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "reg_no",
+                "s_type",
+                "seat",
+                "model_name",
+                "boot_capacity"
+              ]
+            }
+			
+			]
+			}
+			}
+			}
+			]
+			}
+         

@@ -1,3 +1,12 @@
+6/6/2021
+-admin can download chat json & drivervehicles json, it is schema validated.
+
+---------------
+6/2/2021
+-driver and client uses same chat module
+-hr has its own chat module
+------------------------------------
+
 5/16/2021
 -added hr inbox with chat, it displays the latest message from user
 -chat_system.js can be used on any page 
