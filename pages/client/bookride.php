@@ -19,6 +19,10 @@
         <link href = '../../css/style.css' rel = 'stylesheet' type = 'text/css'> 
         <link href = '../../css/bookride.css' rel = 'stylesheet' type = 'text/css'> 
 
+        <link rel="stylesheet" href="../../javascript/timepicker/timepicker.css" />
+
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
 
@@ -32,10 +36,30 @@
       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
 
 
-
        
     </head>
+    <script src="../../javascript/timepicker/timepicker.js"></script>
     <body oncontextmenu='return false' class='snippet-body'>
+    <script>
+        $(function() {
+  $(document).ready(function () {
+    
+   var todaysDate = new Date(); // Gets today's date
+    
+    // Max date attribute is in "YYYY-MM-DD".  Need to format today's date accordingly
+    
+    var year = todaysDate.getFullYear();                        // YYYY
+    var month = ("0" + (todaysDate.getMonth() + 1)).slice(-2);  // MM
+    var day = ("0" + (todaysDate.getDate()+1)).slice(-2);           // DD
+
+    var minDate = (year +"-"+ month +"-"+ day); // Results in "YYYY-MM-DD" for today's date 
+    
+    // Now to set the max date value for the calendar to be today's date
+    $('.pickdate').attr('min',minDate);
+ 
+  });
+});
+</script>
 
 
  <?php 
@@ -49,8 +73,10 @@
 	?>
 	
 
+
+
                             <!-- MultiStep Form -->
-<div class="view1" style="background-image: url('../images/bluemap.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+<div class="view1" style="background-image: url('../../images/bluemap.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
     
 
 <div class="container-fluid" id="grad1">
@@ -64,19 +90,44 @@
                         <form id="msform">
                             <!-- progressbar -->
                             <ul id="progressbar">
-                                <li class="active" id="account"><strong>Account</strong></li>
-                                <li id="personal"><strong>Personal</strong></li>
-                                <li id="payment"><strong>Payment</strong></li>
+                                <li class="active" id="when"><strong>When</strong></li>
+                                <li id="where"><strong>Where</strong></li>
+                                <li id="who"><strong>Who</strong></li>
                                 <li id="confirm"><strong>Finish</strong></li>
                             </ul> <!-- fieldsets -->
                             <fieldset>
                                 <div class="form-card">
-                                    <h2 class="fs-title">Account Information</h2> <input type="email" name="email" placeholder="Email Id" /> <input type="text" name="uname" placeholder="UserName" /> <input type="password" name="pwd" placeholder="Password" /> <input type="password" name="cpwd" placeholder="Confirm Password" />
+                                    <h2 class="fs-title">When do you need this ride?</h2>   
+                                    <h3>Date</h3>                    
+                                        <input type="date" class ="pickdate"name="pickdate">
+                                  <h3>Time</h3>
+                                   <input class = "form-control picktime" type = "text"/> 
+                                     <script type="text/javascript">
+                                      $( document ).ready(function(){
+                                        $(".picktime").timepicker();
+                                        });
+                                    </script>
+                                     
+
+                                     <h2 class = "fs-title">Type of service? </h2> 
+                                     <select required = "required" class = "browser-default custom-select" name="txt_package" id="txt_package">
+                                        <option value='package'>Package</option>
+                                        <option value='ride'>Ride</option>
+                                    </select>
+
+
+
                                 </div> <input type="button" name="next" class="next action-button" value="Next Step" />
                             </fieldset>
                             <fieldset>
                                 <div class="form-card">
-                                    <h2 class="fs-title">Personal Information</h2> <input type="text" name="fname" placeholder="First Name" /> <input type="text" name="lname" placeholder="Last Name" /> <input type="text" name="phno" placeholder="Contact No." /> <input type="text" name="phno_2" placeholder="Alternate Contact No." />
+                                    <h2 class="fs-title">Where do you need to go?</h2> <
+
+
+
+
+
+
                                 </div> <input type="button" name="previous" class="previous action-button-previous" value="Previous" /> <input type="button" name="next" class="next action-button" value="Next Step" />
                             </fieldset>
                             <fieldset>
@@ -92,23 +143,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-3"> <label class="pay">Expiry Date*</label> </div>
-                                        <div class="col-9"> <select class="list-dt" id="month" name="expmonth">
-                                                <option selected>Month</option>
-                                                <option>January</option>
-                                                <option>February</option>
-                                                <option>March</option>
-                                                <option>April</option>
-                                                <option>May</option>
-                                                <option>June</option>
-                                                <option>July</option>
-                                                <option>August</option>
-                                                <option>September</option>
-                                                <option>October</option>
-                                                <option>November</option>
-                                                <option>December</option>
-                                            </select> <select class="list-dt" id="year" name="expyear">
-                                                <option selected>Year</option>
-                                            </select> </div>
+                                        
                                     </div>
                                 </div> <input type="button" name="previous" class="previous action-button-previous" value="Previous" /> <input type="button" name="make_payment" class="next action-button" value="Confirm" />
                             </fieldset>
@@ -133,6 +168,8 @@
     </div>
 </div>
 </div>
+
+
 
  <script type = 'text/javascript' src ='../../javascript/rideform.js'></script>
 

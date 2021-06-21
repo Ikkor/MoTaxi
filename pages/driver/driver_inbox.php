@@ -3,8 +3,6 @@
 require ('../../modules/login_check.php');
 require 'includes/utypecheck.php';
 
-$_SESSION['user_id'] = $_SESSION['id'];
-
 ?>
 
 <!DOCTYPE html>

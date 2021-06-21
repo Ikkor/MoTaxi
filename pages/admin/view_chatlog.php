@@ -37,6 +37,8 @@ $result = $validator->validate($decoded, "http://example.com/JSONSchema.json");
 
 if($result->isValid()) {
 	header('Content-Type: application/json');
+
+	
 	echo $encoded;	
 } else {
 	$error = $result->getErrors();

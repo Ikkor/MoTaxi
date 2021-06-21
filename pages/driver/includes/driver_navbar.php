@@ -24,12 +24,12 @@
           </li>
           <li 
           <?php 
-          if ($activemenu=="riderequests")  
+          if ($activemenu=="requests")  
         echo "class=\"nav-item active\"";
       else 
         echo "class = \"nav-item\"";
                ?>>
-            <a class="nav-link" href="requests.php">Ride Requests</a>
+            <a class="nav-link" href="ride_requests.php">Ride Requests</a>
           </li>
           <li 
           <?php 

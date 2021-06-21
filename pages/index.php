@@ -67,7 +67,7 @@ $ErrMsg = '';
             <hr class="hr-light">
             <h6 class="mb-4">Whether you want to book a taxi or arrange your airport transfers, MoTaxi is just what you need!</h6>
             <?php if(isset($_SESSION['utype']) && $_SESSION['utype']=='driver'){
-            echo '<a style = "color: white !important;" href = "driver/riderequests.php" class="btn request">Ride Requests</a>';
+            echo '<a style = "color: white !important;" href = "driver/ride_requests.php" class="btn request">Ride Requests</a>';
              } else {
               echo '<a style = "color: white !important;" href = "client/bookride.php" class="btn request">Book a Ride</a>';
              } ?>

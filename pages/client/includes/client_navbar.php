@@ -29,7 +29,7 @@
       else 
         echo "class = \"nav-item\"";
                ?>>
-            <a class="nav-link" href="../bookride.php">Book a ride</a>
+            <a class="nav-link" href="../client/bookride.php">Book a ride</a>
           </li>
           <li 
           <?php 

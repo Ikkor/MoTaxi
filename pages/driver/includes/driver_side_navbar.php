@@ -1,5 +1,8 @@
 <!-- Sidebar -->
+<?php
+$_SESSION['user_id'] = $_SESSION['id'];
 
+?>
 <script>
     //code below will update the msg fav-icon 
         $(document).ready(function(){
@@ -9,6 +12,15 @@
                 count_unread_message();
             }, 5000);
             
+
+            /* function get_new_rides(){
+                 $.ajax({
+                        url: "../../modules/driver_get_rides.php"
+
+
+            })
+             }
+             */
             function count_unread_message(){
                 $.ajax({
                     url: "../../modules/chat_modules/count_unseen_message.php",
@@ -21,7 +33,17 @@
             }
         });
 
+
+
     </script>
+
+    <style>
+
+        #ridescnt {
+            background-color: red !important;
+        }
+
+    </style>
 
 
     <div id="sidebar-container" class="sidebar-expanded d-none d-md-block col-2">
@@ -75,12 +97,16 @@
            
             
             <!-- /END Separator -->
-            <a href="#" class="bg-dark list-group-item list-group-item-action">
+            <a href="ride_requests.php"<?php if($activeside=='requests'){ echo 'class="bg-dark list-group-item list-group-item-action active"';} else { echo'class="bg-dark list-group-item list-group-item-action"';}?>>
                 <div class="d-flex w-100 justify-content-start align-items-center">
                     <span class="fa fa-exclamation fa-fw mr-3"></span>
-                    <span class="menu-collapsed">Ride Requests</span>
+                    <span class="menu-collapsed">Ride Requests<span  id = "ridescnt" class="badge badge-pill badge-primary ml-2">0</span></span>
+
                 </div>
             </a>
+
+
+
            <a href="driver_inbox.php" <?php if($activeside=='inbox'){ echo 'class="bg-dark list-group-item list-group-item-action active"';} else { echo'class="bg-dark list-group-item list-group-item-action"';}?>>
                 <div class="d-flex w-100 justify-content-start align-items-center">
                     <span class="fa fa-envelope fa-fw mr-3"></span>

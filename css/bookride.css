@@ -159,19 +159,19 @@ select.list-dt:focus {
     position: relative
 }
 
-#progressbar #account:before {
+#progressbar #when:before {
     font-family: FontAwesome;
-    content: "\f023"
+    content: "\f017"
 }
 
-#progressbar #personal:before {
+#progressbar #where:before {
     font-family: FontAwesome;
-    content: "\f1ba"
+    content: "\f041"
 }
 
-#progressbar #payment:before {
+#progressbar #who:before {
     font-family: FontAwesome;
-    content: "\f09d"
+    content: "\f007"
 }
 
 #progressbar #confirm:before {
