@@ -9,10 +9,10 @@ use Opis\JsonSchema\{
 
 $stmt = "SELECT * from chat_message";
 
-if(isset($_GET['from']) && !empty($_GET['from']))
+if(isset($_GET['fromid']) && !empty($_GET['fromid']))
 {
 	
-	$user_from = $_GET['from'];
+	$user_from = $_GET['fromid'];
 
 	$stmt = $stmt . " WHERE from_user_id='".$user_from."'";
 } //if we specify to and from

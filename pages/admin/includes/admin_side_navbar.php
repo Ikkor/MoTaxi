@@ -45,7 +45,12 @@
                 </div>
             </a>
             
-    
+     <a href="view_chatlog.php" <?php if($activeside=='chat'){ echo 'class="bg-dark list-group-item list-group-item-action active"';} else { echo'class="bg-dark list-group-item list-group-item-action"';}?>>
+                <div class="d-flex w-100 justify-content-start align-items-center">
+                    <span class="fa fa-eye fa-fw mr-3"></span>
+                    <span class="menu-collapsed">Chatlog</span>
+                </div>
+            </a>
 
           
            <a href="logout.php" class="bg-dark list-group-item list-group-item-action">

@@ -30,53 +30,75 @@
 
 <body>
 <script>
-	 $(document).ready(function () {
+
+$(document).ready(function () {
 
 
+
+
+
+var json_result = $.ajax({
+    url: 'json_chatlog.php',
+    async: false,
+    dataType: 'json'
+}).responseJSON;
+
+
+function build_table(i){
+
+	var id = json_result[i].chat_message_id;
+	var to = json_result[i].to_user_id;
+	var from = json_result[i].from_user_id;
+	var message = json_result[i].chat_message;
+	var time = json_result[i].timestamp;
+	var status = json_result[i].status;
+
+
+	var tr_str = "<tr>" +
+
+	"<td align='center'>" + id + "</td>" +
+	"<td align='center'>" + to + "</td>" +
+	"<td align='center'>" + from + "</td>" +
+	"<td align='center'>" + message + "</td>" +
+	"<td align='center'>" + time + "</td>" +
+	"<td align='center'>" + status + "</td>" +
+	"</tr>";
+
+	$("#json_chat tbody").append(tr_str);
+
+	}
 
 
 
 function fill_table(A){
 	$("#json_chat tbody").empty();
-	var from=A;
+	var from = A;
 
-     $.ajax({
-        url: 'json_chatlog.php',
-        data:{
-        	from:from
-        },
-        type: 'get',
-        dataType: 'JSON',
-        success: function(response){
-        	var len = response.length;
-            for(var i=0; i<len; i++){
-                var id = response[i].chat_message_id;
-                var to = response[i].to_user_id;
-                var from = response[i].from_user_id;
-                var message = response[i].chat_message;
-                var time = response[i].timestamp;
-                var status = response[i].status;
+    var len = json_result.length;
 
+	if(from=="1"){
+	    for(var i=0; (i<len); i++){
+	    	build_table(i);
+	    	
+	    }
+	}
 
-                var tr_str = "<tr>" +
-                    
-                    "<td align='center'>" + id + "</td>" +
-                    "<td align='center'>" + to + "</td>" +
-                    "<td align='center'>" + from + "</td>" +
-                    "<td align='center'>" + message + "</td>" +
-                    "<td align='center'>" + time + "</td>" +
-                    "<td align='center'>" + status + "</td>" +
-                    "</tr>";
-
-                $("#json_chat tbody").append(tr_str);
-            }
-        }
-
-    })
+	else {
+		for(var i=0; (i<len); i++){
+			if(from==json_result[i].from_user_id)
+	    		build_table(i);
+	    	
+	    }
+	}
 }
+		 	
+            	
+	               
+  
 
 
-   function fill_select(){
+
+function fill_select(){
      $.ajax({
         url: 'json_chatlog.php',
         type: 'get',
@@ -112,7 +134,7 @@ function fill_table(A){
 }
 
 fill_select();
-fill_table();
+fill_table("1"); //display all by default
 
 $('#from_msg').on('change',function(){
 	fill_table(this.value);
@@ -136,7 +158,7 @@ $('#from_msg').on('change',function(){
 <!-- SIDE NAV -->
 <div class="row" id="body-row" >
     <?php 
-    $activeside = 'drivers';
+    $activeside = 'chat';
     include('includes/admin_side_navbar.php');
     ?>
 
@@ -152,7 +174,7 @@ $('#from_msg').on('change',function(){
         <h1>View Chatlog</h1>
 
 <select name="from_msg" id="from_msg">
-<option value="">All</option>
+<option value="1">All</option>
 
 </select>
 
