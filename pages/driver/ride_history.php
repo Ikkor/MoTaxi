@@ -9,7 +9,7 @@ require 'includes/utypecheck.php';
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Driver see his rides</title>
+    <title>Driver see his rides requests</title>
     <meta charset = "utf-8">
     <meta name = "viewport" content = "width=device-width, initial-scale=1">
     <!-- Font Awesome -->
@@ -145,10 +145,10 @@ require 'includes/utypecheck.php';
 
 
  
-        <h1>Ride History</h1>
+        <h1>Ride Requests</h1>
 
 
-<!-- CLIENT COMPLAINTS WRAPPER BELOW -->
+<!-- RIDE REQUESTS WRAPPER BELOW -->
 
 
 

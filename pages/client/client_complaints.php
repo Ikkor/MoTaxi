@@ -9,7 +9,7 @@ $_SESSION['rideInQuestion']=$_GET['rideInQuestion'];
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Client View Rides</title>
+    <title>Client Complaints</title>
     <meta charset = "utf-8">
     <meta name = "viewport" content = "width=device-width, initial-scale=1">
     <!-- Font Awesome -->

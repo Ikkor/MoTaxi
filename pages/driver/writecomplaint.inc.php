@@ -15,7 +15,7 @@
 		$driverId=$_SESSION['id'];//driver login=>driver id
 
 
-		$stmt=$pdo->prepare("select * from ride where ride_id=:ride_id && driver_id=:driverId");
+		$stmt=$pdo->prepare("select * from rides where ride_id=:ride_id && driver_id=:driverId");
 		
 		$stmt->execute(['ride_id'=>$_SESSION['rideInQuestion'], 'driverId'=>$driverId]);
 
@@ -27,7 +27,7 @@
 			header('location: ../index.php?message=PleaseDoNotToyWithURL');
 		}
 
-		$userId=$result['user_id'];
+		$userId=$result['client_id'];
 
 		$complaintId='NULL';
 		$comment=$_POST['txt_comment'];

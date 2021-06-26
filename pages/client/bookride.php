@@ -1,6 +1,9 @@
 <?php 
     require('../../modules/login_check.php');
+    require ('../../includes/db_connect.php');
     require 'includes/utypecheck.php';
+    require '../../modules/fetch_latest_rate.php';
+    
  ?>
 
 <!-- T H I S   P A G E   I S    A   P R T O  Y P E   -->
@@ -19,7 +22,16 @@
         <link href = '../../css/style.css' rel = 'stylesheet' type = 'text/css'> 
         <link href = '../../css/bookride.css' rel = 'stylesheet' type = 'text/css'> 
 
-        <link rel="stylesheet" href="../../javascript/timepicker/timepicker.css" />
+      
+
+
+          <link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.1/mapsjs-ui.css" />
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-core.js"></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-service.js"></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
+
+
 
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         
@@ -38,28 +50,223 @@
 
        
     </head>
-    <script src="../../javascript/timepicker/timepicker.js"></script>
     <body oncontextmenu='return false' class='snippet-body'>
-    <script>
-        $(function() {
-  $(document).ready(function () {
-    
-   var todaysDate = new Date(); // Gets today's date
-    
-    // Max date attribute is in "YYYY-MM-DD".  Need to format today's date accordingly
-    
-    var year = todaysDate.getFullYear();                        // YYYY
-    var month = ("0" + (todaysDate.getMonth() + 1)).slice(-2);  // MM
-    var day = ("0" + (todaysDate.getDate()+1)).slice(-2);           // DD
 
-    var minDate = (year +"-"+ month +"-"+ day); // Results in "YYYY-MM-DD" for today's date 
+
+<style>
+    .table-wrapper
+{
     
-    // Now to set the max date value for the calendar to be today's date
-    $('.pickdate').attr('min',minDate);
- 
-  });
+    width: 100%;
+    height: 300px;
+    overflow: auto;
+}
+
+table
+{
+    border: 1px solid black;
+    
+}
+
+td
+{
+   
+    background-color: #ccc;
+}
+
+
+.hidden{
+    display:none;
+}
+
+#map {
+
+  width: 500px;
+  height: 300px;
+  background-color: gray;
+}
+
+#routingInputContainer {
+  width: 300px;
+  height: 210px;
+  position: relative;
+  
+  
+  color: black;
+}
+
+.routingInput {
+  width: 95%;
+}
+
+</style>
+
+
+
+
+
+
+    <script>
+        
+  $(document).ready(function () {
+
+var lon;
+var lat;
+
+    $.ajax({
+          url: "https://geolocation-db.com/jsonp",
+          jsonpCallback: "callback",
+          dataType: "jsonp",
+          success: function(location) {
+            lon=location.longitude;
+            lat=location.latitude;
+            $('#loc').html('lon: '+location.latitude+' lat: '+location.longitude);
+
+          }
+        })
+
+
+
+
+    var when; //when does client need ride;
+
+
+$('#driver_id').change(function(){
+            selected_value = $("input[name='driver_id']:checked").val();
+            alert("AAA");
+        });
+//if user selects now..
+$('select').change(function() {
+  if ($(this).val() == 'now') {
+    when = 'now';
+  
+
+
+    function timestampToDatetimeInputString(timestamp) {
+    const date = new Date((timestamp + _getTimeZoneOffsetInMs()));
+    // slice(0, 19) includes seconds
+    return date.toISOString().slice(0, 19);
+  }
+  
+  function _getTimeZoneOffsetInMs() {
+    return new Date().getTimezoneOffset() * -60 * 1000;
+  }
+
+  document.getElementById('picktime').value = timestampToDatetimeInputString(Date.now());
+
+   
+    $( "#picktime" ).prop( "readonly", true );
+
+
+
+
+  } else {
+    when='NULL';
+    $( "#picktime" ).prop( "readonly", false );
+
+
+
+
+
+  }
+}).trigger("change");
+
+
+
+//when client clicks next (after 1st slide)
+$( ".next.action-button.2" ).click(function() {
+
+
+
+
+    $('#drivers').empty();
+        if(when=='now'){
+        get_nearest_drivers();
+        }
+
+        else {
+        get_drivers();
+        $("#target").val($("#target option:first").val());
+
+        }
+
 });
+
+
+function get_driver_vehicle(A){
+$('#vehicles').empty();
+
+var service = document.getElementById('txt_service').selectedOptions[0].value;
+
+var driverid = A;
+
+     $.ajax({
+            url:"../../modules/get_driver_vehicle.php",
+            method:"POST",
+            data:{
+                driverid:driverid,
+                service:service
+            },
+            success:function(data){
+              $('#vehicles').html(data);
+
+            }
+          })
+
+}
+
+
+
+function get_nearest_drivers(){
+ 
+      $.ajax({
+            url:"../../modules/get_nearest_driver.php",
+            method:"POST",
+            data:{
+                lon:lon,
+                lat:lat
+            },
+            success:function(data){
+              $('#drivers').html(data);
+
+        get_driver_vehicle($('#driver_id').val());
+            }
+          })
+
+
+      get_driver_vehicle();
+}
+
+function get_drivers(){ 
+   
+    $.ajax({
+            url:"../../modules/get_drivers.php",
+            method:"POST",
+            success:function(data){
+              $('#drivers').html(data);
+
+                get_driver_vehicle($('input[name="driver_id"]:checked').val());
+            
+
+                $('input[type=radio][name="driver_id"]').change(function() {
+        get_driver_vehicle($(this).val()); // or, use `this.value`
+    });
+
+            }
+          })
+
+        }
+
+
+
+
+        
+});
+
+
+
 </script>
+
 
 
  <?php 
@@ -71,6 +278,7 @@
 	$activemenu = 'bookride';
 	include('includes/client_navbar.php');
 	?>
+
 	
 
 
@@ -87,65 +295,94 @@
                 <p>Fill in the required details</p>
                 <div class="row">
                     <div class="col-md-12 mx-0">
-                        <form id="msform">
+                        <form id="msform" target="print_popup"  class="text-center border border-light p-5" action="http://127.0.0.1:8000/rides/create" method = "GET" onsubmit="window.open('about:blank','print_popup','width=1000,height=800')";>
                             <!-- progressbar -->
                             <ul id="progressbar">
-                                <li class="active" id="when"><strong>When</strong></li>
-                                <li id="where"><strong>Where</strong></li>
+                                <li class="active" id="where"><strong>When</strong></li>
+                                <li id="when"><strong>Where</strong></li>
                                 <li id="who"><strong>Who</strong></li>
                                 <li id="confirm"><strong>Finish</strong></li>
                             </ul> <!-- fieldsets -->
                             <fieldset>
                                 <div class="form-card">
-                                    <h2 class="fs-title">When do you need this ride?</h2>   
-                                    <h3>Date</h3>                    
-                                        <input type="date" class ="pickdate"name="pickdate">
-                                  <h3>Time</h3>
-                                   <input class = "form-control picktime" type = "text"/> 
-                                     <script type="text/javascript">
-                                      $( document ).ready(function(){
-                                        $(".picktime").timepicker();
-                                        });
-                                    </script>
+                                    <h2 class="fs-title">Where do you need to go?</h2>
+
+
+                                       <div id="map"></div>
+                                        <div id="routingInputContainer">
+                                          Starting point:
+                                            
+                                          <input required id="inputStart" name="from_loc" class="routingInput" readonly = "readonly"/>
+                                          Destination point:
+                                          <input required id="inputDest" name="to_loc" class="routingInput" readonly = "readonly"/>
+                                          <br/><br/>
+                                          <span id="info"></span>
+                                     </div>
+
+                                    <!-- hidden fields here -->
+                                     <input class = "hidden" id = "distance" name = "txt_distance" type="number">
+
+                                     <input class = "hidden" name = "txt_name" type="text" value=<?php echo $_SESSION['name'];?>>
+
+                                     <input class = "hidden" name = "txt_id" type="text" value=<?php echo $_SESSION['id'];?>>
+
+                                     <input class = "hidden" name = "txt_rate" type="number" value=<?php echo $rate ?>>
+
+
+
+                                
+                                <!-- end hidden fields -->
+                                   
+                                </div>
+
+
+                                <input type="button" name="next" class="next action-button 1" value="Next Step" />
+                            </fieldset>
+
+
+                            <fieldset>
+                                <div class="form-card">
+                                    <h2 class="fs-title">When do you need this ride?</h2> 
+
+                                  <select id = "when" required = "required" class = "browser-default custom-select" name="txt_when" id="txt_when">
+                                    <option value='later'>Later</option>
+                                        <option value='now'>Now</option>
+                                        
+                                    </select>
+                                    
+                               
+                                  
+                                    <br><br>
+                                    <h3>Date & Time </h3>
+                                   <input id="picktime" required="required" name = "time_in" class = "form-control picktime" type = "datetime-local"/> 
                                      
 
+                                    
+
                                      <h2 class = "fs-title">Type of service? </h2> 
-                                     <select required = "required" class = "browser-default custom-select" name="txt_package" id="txt_package">
+                                     <select required = "required" class = "browser-default custom-select" name="service" id="txt_service">
                                         <option value='package'>Package</option>
                                         <option value='ride'>Ride</option>
                                     </select>
+                                    <!-- <p id="loc"></p> -->
+                                    
 
 
 
-                                </div> <input type="button" name="next" class="next action-button" value="Next Step" />
+                                </div> <input type="button" name="previous" class="previous action-button-previous" value="Previous" /> <input type="button" name="next" class="next action-button 2" value="Next Step" />
                             </fieldset>
                             <fieldset>
                                 <div class="form-card">
-                                    <h2 class="fs-title">Where do you need to go?</h2> <
+                                    <h2 class="fs-title">Your driver</h2>
+                                  
+                                  
+                                    <div id="drivers" class="table-wrapper"> </div>
 
+                                     <div id ="vehicles" class ="table-wrapper"></div>
+                               
+                        
 
-
-
-
-
-                                </div> <input type="button" name="previous" class="previous action-button-previous" value="Previous" /> <input type="button" name="next" class="next action-button" value="Next Step" />
-                            </fieldset>
-                            <fieldset>
-                                <div class="form-card">
-                                    <h2 class="fs-title">Payment Information</h2>
-                                    <div class="radio-group">
-                                        <div class='radio' data-value="credit"><img src="https://i.imgur.com/XzOzVHZ.jpg" width="200px" height="100px"></div>
-                                        <div class='radio' data-value="paypal"><img src="https://i.imgur.com/jXjwZlj.jpg" width="200px" height="100px"></div> <br>
-                                    </div> <label class="pay">Card Holder Name*</label> <input type="text" name="holdername" placeholder="" />
-                                    <div class="row">
-                                        <div class="col-9"> <label class="pay">Card Number*</label> <input type="text" name="cardno" placeholder="" /> </div>
-                                        <div class="col-3"> <label class="pay">CVC*</label> <input type="password" name="cvcpwd" placeholder="***" /> </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-3"> <label class="pay">Expiry Date*</label> </div>
-                                        
-                                    </div>
-                                </div> <input type="button" name="previous" class="previous action-button-previous" value="Previous" /> <input type="button" name="make_payment" class="next action-button" value="Confirm" />
+                                </div> <input type="button" name="previous" class="previous action-button-previous" value="Previous" /> <input type="button" name="submit" class="next action-button" value="submit" />
                             </fieldset>
                             <fieldset>
                                 <div class="form-card">
@@ -155,7 +392,9 @@
                                     </div> <br><br>
                                     <div class="row justify-content-center">
                                         <div class="col-7 text-center">
-                                            <h5>You Have Successfully Signed Up</h5>
+                                            <h5>Perfect! You are just one step away..</h5>
+
+                                             <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit" value = "submit" name = "submit">Confirm my details</button>
                                         </div>
                                     </div>
                                 </div>
@@ -172,8 +411,9 @@
 
 
  <script type = 'text/javascript' src ='../../javascript/rideform.js'></script>
-
+<script type="text/javascript" src="routing.js"></script>
  <script type = 'text/javascript' src='../../javascript/main.js'></script>
+
  
 
                             </body>

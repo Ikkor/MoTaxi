@@ -1,5 +1,7 @@
 <!-- Sidebar -->
 <?php
+
+require('../../includes/db_connect.php');
 $_SESSION['user_id'] = $_SESSION['id'];
 
 ?>
@@ -7,9 +9,10 @@ $_SESSION['user_id'] = $_SESSION['id'];
     //code below will update the msg fav-icon 
         $(document).ready(function(){
             count_unread_message();
+            count_new_rides();
 
             setInterval(function(){
-                count_unread_message();
+                count_unread_message(); count_new_rides();
             }, 5000);
             
 
@@ -31,7 +34,23 @@ $_SESSION['user_id'] = $_SESSION['id'];
                     }
                 })
             }
+
+
+             function count_new_rides(){
+                $.ajax({
+                    url: "../../modules/count_new_rides.php",
+                    method: "POST",
+                    success:function(data){
+                        $('#ridescnt').html(data);
+                        // alert(data);
+                    }
+                })
+            }
         });
+
+
+
+
 
 
 

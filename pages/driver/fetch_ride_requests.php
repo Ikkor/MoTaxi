@@ -14,11 +14,11 @@ require ('../../includes/db_connect.php');
 
 session_start();
 
-$query = 'select * from ride where driver_id ='.$_SESSION['id'].' AND time_out=:time order by date';
+$query = 'select * from rides where driver_id ='.$_SESSION['id'].' AND status=:status';
 
 $statement = $pdo->prepare($query);
 
-$statement->execute(['time'=>'00:00:00']);
+$statement->execute(['status'=>'ongoing']); //meaning timeout not set yet
 
 $result = $statement->fetchAll();
 
@@ -51,7 +51,7 @@ foreach($result as $row)
 {
 	//get driver name
 	$user_namestmt=$pdo->prepare('select name from user where Id=:user_id');
-	$user_namestmt->execute(['user_id'=>$row['user_id']]);
+	$user_namestmt->execute(['user_id'=>$row['client_id']]);
 	$user_name=$user_namestmt->fetch();
 
 
@@ -63,7 +63,7 @@ foreach($result as $row)
 		<td>'.$row['to_loc'].'</td>
 		<td>'.$row['time_in'].'</td>
 		
-		<td>'.$row['user_id'].'</td>
+		<td>'.$row['client_id'].'</td>
 		<td>'.$user_name['name'].'</td>
 		<td>'.$row['service_type'].'</td>
 		<td>'.$row['distance'].'</td>
