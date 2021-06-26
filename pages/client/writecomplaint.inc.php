@@ -27,7 +27,7 @@
 		$desc=$_POST['txt_desc'];
 
 		
-		$stmt=$pdo->prepare("select * from ride where ride_id=:ride_id && user_id=:userId");
+		$stmt=$pdo->prepare("select * from rides where ride_id=:ride_id && client_id=:userId");
 		
 		$stmt->execute(['ride_id'=>$_SESSION['rideInQuestion'], 'userId'=>$userId]);
 
