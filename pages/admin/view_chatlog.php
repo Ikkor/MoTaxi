@@ -94,10 +94,6 @@ function fill_table(A){
 		 	
             	
 	               
-  
-
-
-
 function fill_select(){
      $.ajax({
         url: 'json_chatlog.php',
@@ -180,8 +176,7 @@ $('#from_msg').on('change',function(){
 
 
 
-</div><!-- chat wrapper-->
-
+</div>
 
 
 

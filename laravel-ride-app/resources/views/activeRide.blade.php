@@ -45,6 +45,6 @@
     </tbody>
   </table>
 
-  <h1>IMAGINARY MAP AREA</h1>
+  
 <div>
 @endsection

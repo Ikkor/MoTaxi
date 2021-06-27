@@ -323,26 +323,13 @@ const platform = new H.service.Platform({
 const maptypes = platform.createDefaultLayers();
 
 
-var lon;
-var lat;
-
-    $.ajax({
-          url: "https://geolocation-db.com/jsonp",
-          jsonpCallback: "callback",
-          dataType: "jsonp",
-          success: function(location) {
-            lon=location.longitude;
-            lat=location.latitude;
-
-          }
-        })
 
 // Step 2: initialize a map - this map is centered over Europe
 const map = new H.Map(document.getElementById('map'),
   maptypes.vector.normal.map, {
     center: {
-      lat: lat,
-      lng: lon
+      lat: -20.2833,
+      lng: 57.55
     },
     zoom: 14,
     pixelRatio: window.devicePixelRatio || 1

@@ -32,6 +32,15 @@
                     <span class="menu-collapsed">HR Managers</span>
                 </div>
             </a>
+
+             <a href="manage_users.php" <?php if($activeside=='users'){ echo 'class="bg-dark list-group-item list-group-item-action active"';} else { echo'class="bg-dark list-group-item list-group-item-action"';}?>>
+                <div class="d-flex w-100 justify-content-start align-items-center">
+                    <span class="fa fa-user fa-fw mr-3"></span>
+                    <span class="menu-collapsed">User Accounts</span>
+                </div>
+            </a>
+           
+            
            
             
 
